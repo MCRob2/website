@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages Test</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        
+        main {
+            margin-top: 80px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .success-box {
+            background: #4CAF50;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        a {
+            color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎉 GitHub Pages Test Page</h1>
+    </header>
+    
+    <main>
+        <div class="success-box">
+            <h2>✅ It's Working!</h2>
+            <p>Your GitHub Pages site is live!</p>
+            <p>Current time: <span id="time"></span></p>
+        </div>
+        
+        <div class="test-section">
+            <h3>Next Steps:</h3>
+            <ol style="text-align: left; display: inline-block;">
+                <li>This page confirms GitHub Pages is working</li>
+                <li>Replace this with your actual website files</li>
+                <li>Add your other HTML files (en.html, fr.html, es.html)</li>
+                <li>Create folders for images and videos</li>
+            </ol>
+        </div>
+        
+        <div class="test-section">
+            <h3>Test Links:</h3>
+            <p><a href="#test">Test anchor link (scrolls down)</a></p>
+            <p><a href="en.html">Test link to en.html (will 404 until you add it)</a></p>
+        </div>
+        
+        <div class="test-section" style="margin-top: 100vh;" id="test">
+            <h3>📍 You scrolled here!</h3>
+            <p>Smooth scrolling works!</p>
+            <p><a href="#top">Back to top</a></p>
+        </div>
+    </main>
+    
+    <script>
+        // Show current time to prove the page is fresh
+        document.getElementById('time').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>
