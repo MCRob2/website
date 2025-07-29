@@ -1,95 +1,662 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Pages Test</title>
+    <title>Dr. ABC DEF</title>
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f0f0f0;
-        }
-        
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #333;
-            color: white;
-            padding: 5px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-        
-        main {
-            margin-top: 80px;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .success-box {
-            background: #4CAF50;
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-            max-width: 600px;
-            margin: 20px auto;
-        }
-        
-        .test-section {
-            background: white;
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 600px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        a {
-            color: #2196F3;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; line-height: 1.6; color: #333; }
+        nav { position: fixed; top: 0; left: 0; right: 0; height: 60px; background: white; 
+               border-bottom: 1px solid #ddd; display: flex; align-items: center; 
+               padding: 0 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 1000; }
+        .nav-content { max-width: 900px; width: 100%; margin: 0 auto; 
+                        display: flex; justify-content: space-between; align-items: center; }
+        #menu-btn { background: #2c3e50; color: white; border: none; 
+                     padding: 8px 16px; cursor: pointer; border-radius: 4px; }
+        .lang-btns { display: flex; gap: 8px; }
+        .lang-btns button { border: 1px solid #2c3e50; background: none; color: #2c3e50; 
+                             padding: 6px 12px; cursor: pointer; border-radius: 3px; }
+        .lang-btns button.active { background: #2c3e50; color: white; }
+        #menu { position: fixed; top: 60px; left: 0; right: 0; background: white; 
+                 border-bottom: 1px solid #ddd; display: none; max-width: 900px; margin: 0 auto; }
+        #menu a { display: block; padding: 12px 20px; text-decoration: none; color: #333; 
+                   border-bottom: 1px solid #eee; }
+        #menu a:hover { background: #f5f5f5; padding-left: 30px; }
+        main { margin-top: 80px; }
+        section { max-width: 900px; margin: 0 auto; padding: 60px 20px; min-height: 50vh; }
+        section:nth-child(even) { background: #f5f5f5; }
+        h1 { font-size: 2.5em; margin-bottom: 20px; color: #2c3e50; }
+        h2 { font-size: 1.8em; margin: 30px 0 15px 0; color: #2c3e50; }
+        h3 { font-size: 1.3em; margin: 20px 0 10px 0; }
+        p { margin-bottom: 15px; }
+        .monospace { font-family: "Courier New", Courier, monospace; background: #f5f5f5; padding: 15px; 
+                      border-radius: 4px; margin: 15px 0; white-space: pre; }
+        .button { display: inline-block; padding: 12px 24px; background: #3498db; 
+                   color: white; text-decoration: none; border-radius: 5px; margin: 10px 0; }
+        .button:hover { background: #2980b9; }
+        a { color: #3498db; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        ul { margin: 15px 0 15px 30px; }
+        li { margin-bottom: 8px; }
+        img { max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px; }
+        hr { border: none; border-top: 1px solid #ddd; margin: 30px 0; }
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+        strong { font-weight: 600; }
+        em { font-style: italic; }
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.5em; }
+            section { padding: 40px 15px; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>GitHub Pages</h1>
-    </header>
-    
-    <main>
-        <div class="success-box">
-            <h2>It's Working!</h2>
-            <p>Your GitHub Pages site is live!</p>
-            <p>Current time: <span id="time"></span></p>
+    <nav>
+        <div class="nav-content">
+            <button id="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+            <div class="lang-btns">
+                <button onclick="setLang('de')" data-lang="de" class="active">DE</button>
+                <button onclick="setLang('en')" data-lang="en">EN</button>
+                <button onclick="setLang('fr')" data-lang="fr">FR</button>
+                <button onclick="setLang('es')" data-lang="es">ES</button>
+            </div>
         </div>
-        
-        <div class="test-section">
-            <h3>Next Steps:</h3>
-            <ol style="text-align: left; display: inline-block;">
-                <li>This page confirms GitHub Pages is working</li>
-                <li>Replace this with your actual website files</li>
-                <li>Add your other HTML files (en.html, fr.html, es.html)</li>
-                <li>Create folders for images and videos</li>
-            </ol>
-        </div>
-        
-        <div class="test-section">
-            <h3>Test Links:</h3>
-            <p><a href="#test">Test anchor link (scrolls down)</a></p>
-            <p><a href="en.html">Test link to en.html (will 404 until you add it)</a></p>
-        </div>
-        
-        <div class="test-section" style="margin-top: 100vh;" id="test">
-            <h3>📍 You scrolled here!</h3>
-            <p>Smooth scrolling works!</p>
-            <p><a href="#top">Back to top</a></p>
-        </div>
-    </main>
-    
+    </nav>
+    <div id="menu"><a href="#home">Startseite</a>
+<a href="#über uns">Über uns</a>
+<a href="#angebot">Angebot</a>
+<a href="#kontakt">Kontakt</a>
+<a href="#sprechzeiten">Sprechzeiten</a>
+<a href="#team">Team</a>
+<a href="#links">Links</a>
+<a href="#impressum">Impressum</a></div>
+    <main><section id="home">
+<div class="lang-content active" data-lang="de">
+<h1>Dr. ABC DEF</h1>
+<p>Praxis für Gynäkologie und Geburtshilfe  </p>
+<p>Fachärztin FMH für Gynäkologie und Geburtshilfe  </p>
+<p>Schwerpunkt: Ultraschalldiagnostik</p>
+
+<img src="images/entrance.jpg" alt="Praxis Eingang">
+</div>
+<div class="lang-content " data-lang="en">
+<h1>Dr. ABC DEF</h1>
+<p>Practice for Gynecology and Obstetrics  </p>
+<p>Specialist FMH in Gynecology and Obstetrics  </p>
+<p>Focus: Ultrasound Diagnostics</p>
+
+<img src="images/entrance.jpg" alt="Practice Entrance">
+</div>
+<div class="lang-content " data-lang="fr">
+<h1>Dr. ABC DEF</h1>
+<p>Cabinet de Gynécologie et Obstétrique  </p>
+<p>Spécialiste FMH en Gynécologie et Obstétrique  </p>
+<p>Spécialisation: Diagnostic par ultrasons</p>
+
+<img src="images/entrance.jpg" alt="Entrée du cabinet">
+</div>
+<div class="lang-content " data-lang="es">
+<h1>Dr. ABC DEF</h1>
+<p>Consulta de Ginecología y Obstetricia  </p>
+<p>Especialista FMH en Ginecología y Obstetricia  </p>
+<p>Especialidad: Diagnóstico por ultrasonido</p>
+
+<img src="images/entrance.jpg" alt="Entrada de la consulta">
+</div>
+</section>
+<section id="kontakt">
+<div class="lang-content active" data-lang="de">
+<strong>Adresse:</strong>  
+<p>Hauptstraße 123  </p>
+<p>12345 Stadt</p>
+
+<strong>Telefon:</strong> +49 123 456789
+
+<a href="tel:+491234567890" class="button">Jetzt anrufen</a>
+</div>
+<div class="lang-content " data-lang="en">
+<strong>Address:</strong>  
+<p>Main Street 123  </p>
+<p>12345 City</p>
+
+<strong>Phone:</strong> +49 123 456789
+
+<a href="tel:+491234567890" class="button">Call now</a>
+</div>
+<div class="lang-content " data-lang="fr">
+<strong>Adresse:</strong>  
+<p>123 Rue Principale  </p>
+<p>12345 Ville</p>
+
+<strong>Téléphone:</strong> +49 123 456789
+
+<a href="tel:+491234567890" class="button">Appeler maintenant</a>
+</div>
+<div class="lang-content " data-lang="es">
+<strong>Dirección:</strong>  
+<p>Calle Principal 123  </p>
+<p>12345 Ciudad</p>
+
+<strong>Teléfono:</strong> +49 123 456789
+
+<a href="tel:+491234567890" class="button">Llamar ahora</a>
+</div>
+</section>
+<section id="sprechzeiten">
+<div class="lang-content active" data-lang="de">
+<strong>Unsere Sprechzeiten:</strong>
+
+<div class="monospace">
+<p>Mo: 07:15 - 12:00  13:30 - 17:00</p>
+<p>Di: 08:00 - 12:00  14:00 - 18:00</p>
+<p>Mi: 07:15 - 12:00  geschlossen</p>
+<p>Do: 08:00 - 12:00  13:30 - 17:00</p>
+<p>Fr: 07:15 - 13:00  geschlossen</p>
+</div>
+
+<p>Termine nach Vereinbarung</p>
+</div>
+<div class="lang-content " data-lang="en">
+<strong>Our Office Hours:</strong>
+
+<div class="monospace">
+<p>Mo: 07:15 - 12:00  13:30 - 17:00</p>
+<p>Tu: 08:00 - 12:00  14:00 - 18:00</p>
+<p>We: 07:15 - 12:00  closed</p>
+<p>Th: 08:00 - 12:00  13:30 - 17:00</p>
+<p>Fr: 07:15 - 13:00  closed</p>
+</div>
+
+<p>Appointments by arrangement</p>
+</div>
+<div class="lang-content " data-lang="fr">
+<strong>Nos horaires:</strong>
+
+<div class="monospace">
+<p>Lu: 07:15 - 12:00  13:30 - 17:00</p>
+<p>Ma: 08:00 - 12:00  14:00 - 18:00</p>
+<p>Me: 07:15 - 12:00  fermé</p>
+<p>Je: 08:00 - 12:00  13:30 - 17:00</p>
+<p>Ve: 07:15 - 13:00  fermé</p>
+</div>
+
+<p>Rendez-vous sur rendez-vous</p>
+</div>
+<div class="lang-content " data-lang="es">
+<strong>Nuestro horario:</strong>
+
+<div class="monospace">
+<p>Lu: 07:15 - 12:00  13:30 - 17:00</p>
+<p>Ma: 08:00 - 12:00  14:00 - 18:00</p>
+<p>Mi: 07:15 - 12:00  cerrado</p>
+<p>Ju: 08:00 - 12:00  13:30 - 17:00</p>
+<p>Vi: 07:15 - 13:00  cerrado</p>
+</div>
+
+<p>Citas con cita previa</p>
+</div>
+</section>
+<section id="info">
+<div class="lang-content active" data-lang="de">
+<strong>Wichtige Informationen:</strong>
+
+<p>Wir nehmen neue Patientinnen auf.</p>
+
+<p>Bitte bringen Sie zu Ihrem ersten Termin Ihre Krankenversicherungskarte mit.</p>
+</div>
+<div class="lang-content " data-lang="en">
+<strong>Important Information:</strong>
+
+<p>We are accepting new patients.</p>
+
+<p>Please bring your health insurance card to your first appointment.</p>
+</div>
+<div class="lang-content " data-lang="fr">
+<strong>Informations importantes:</strong>
+
+<p>Nous acceptons de nouvelles patientes.</p>
+
+<p>Veuillez apporter votre carte d'assurance maladie à votre premier rendez-vous.</p>
+</div>
+<div class="lang-content " data-lang="es">
+<strong>Información importante:</strong>
+
+<p>Aceptamos nuevas pacientes.</p>
+
+<p>Por favor traiga su tarjeta de seguro médico a su primera cita.</p>
+</div>
+</section>
+<section id="angebot">
+<div class="lang-content active" data-lang="de">
+<h1>Unser Angebot</h1>
+
+<strong>Schwangerschaft</strong>
+
+<p>Wir begleiten Sie während Ihrer gesamten Schwangerschaft mit umfassender Betreuung.</p>
+
+<strong>Externe Hebammen:</strong>
+<ul>
+<li>Hebamme Anna Müller</li>
+<li>Hebamme Barbara Schmidt</li>
+<li>Hebamme Christina Weber</li>
+<li>Hebamme Diana Fischer</li>
+</ul>
+
+<strong>Schwangerschaftskontrollen</strong>  
+<p>Regelmäßige Untersuchungen nach den Mutterschaftsrichtlinien zur Überwachung Ihrer und der Gesundheit Ihres Babys.</p>
+
+<strong>Ernährungsberatung</strong>  
+<p>Individuelle Beratung für eine gesunde Ernährung während der Schwangerschaft.</p>
+
+<strong>Ultraschalluntersuchungen</strong>
+<ul>
+<li>Früher Ultraschall (8. Woche)</li>
+<li>Ersttrimesterscreening (12. Woche)</li>
+<li>Organscreening (20. Woche)</li>
+</ul>
+
+<strong>Impfungen</strong>  
+<p>Beratung und Durchführung aller empfohlenen Impfungen in der Schwangerschaft.</p>
+
+<strong>Geburtsbegleitung</strong>  
+<p>Zusammenarbeit mit der Geburtsklinik Ihrer Wahl.</p>
+
+<hr>
+
+<strong>Gynäkologie</strong>
+
+<p>Umfassende gynäkologische Betreuung für alle Lebensphasen.</p>
+
+<strong>Jahreskontrollen</strong>  
+<p>Jährliche Vorsorgeuntersuchungen inklusive Krebsvorsorge.</p>
+
+<strong>Notfallsprechstunde</strong>  
+<p>Bei akuten Beschwerden sind wir für Sie da.</p>
+
+<strong>Verhütungsberatung</strong>  
+<p>Individuelle Beratung zu allen modernen Verhütungsmethoden.</p>
+
+<strong>Ultraschalldiagnostik</strong>  
+<p>Modernste Ultraschalltechnik für präzise Diagnostik.</p>
+
+<strong>Operative Eingriffe</strong>  
+<p>Kleinere ambulante Eingriffe in unserer Praxis.</p>
+
+<strong>Zusammenarbeit</strong>  
+<p>Enge Kooperation mit Spezialisten und Kliniken der Region.</p>
+</div>
+<div class="lang-content " data-lang="en">
+<h1>Our Services</h1>
+
+<strong>Pregnancy</strong>
+
+<p>We provide comprehensive care throughout your pregnancy.</p>
+
+<strong>External Midwives:</strong>
+<ul>
+<li>Midwife Anna Müller</li>
+<li>Midwife Barbara Schmidt</li>
+<li>Midwife Christina Weber</li>
+<li>Midwife Diana Fischer</li>
+</ul>
+
+<strong>Prenatal Care</strong>  
+<p>Regular check-ups according to maternity guidelines to monitor your and your baby's health.</p>
+
+<strong>Nutritional Counseling</strong>  
+<p>Individual consultation for healthy nutrition during pregnancy.</p>
+
+<strong>Ultrasound Examinations</strong>
+<ul>
+<li>Early ultrasound (week 8)</li>
+<li>First trimester screening (week 12)</li>
+<li>Organ screening (week 20)</li>
+</ul>
+
+<strong>Vaccinations</strong>  
+<p>Consultation and administration of all recommended vaccinations during pregnancy.</p>
+
+<strong>Birth Support</strong>  
+<p>Collaboration with the birth clinic of your choice.</p>
+
+<hr>
+
+<strong>Gynecology</strong>
+
+<p>Comprehensive gynecological care for all life stages.</p>
+
+<strong>Annual Check-ups</strong>  
+<p>Annual preventive examinations including cancer screening.</p>
+
+<strong>Emergency Consultation</strong>  
+<p>We are here for you in case of acute complaints.</p>
+
+<strong>Contraception Counseling</strong>  
+<p>Individual consultation on all modern contraceptive methods.</p>
+
+<strong>Ultrasound Diagnostics</strong>  
+<p>State-of-the-art ultrasound technology for precise diagnostics.</p>
+
+<strong>Surgical Procedures</strong>  
+<p>Minor outpatient procedures in our practice.</p>
+
+<strong>Collaboration</strong>  
+<p>Close cooperation with specialists and clinics in the region.</p>
+</div>
+<div class="lang-content " data-lang="fr">
+<h1>Nos Services</h1>
+
+<strong>Grossesse</strong>
+
+<p>Nous vous accompagnons tout au long de votre grossesse avec des soins complets.</p>
+
+<strong>Sages-femmes externes:</strong>
+<ul>
+<li>Sage-femme Anna Müller</li>
+<li>Sage-femme Barbara Schmidt</li>
+<li>Sage-femme Christina Weber</li>
+<li>Sage-femme Diana Fischer</li>
+</ul>
+
+<strong>Contrôles de grossesse</strong>  
+<p>Examens réguliers selon les directives de maternité pour surveiller votre santé et celle de votre bébé.</p>
+
+<strong>Conseil nutritionnel</strong>  
+<p>Consultation individuelle pour une alimentation saine pendant la grossesse.</p>
+
+<strong>Examens échographiques</strong>
+<ul>
+<li>Échographie précoce (8e semaine)</li>
+<li>Dépistage du premier trimestre (12e semaine)</li>
+<li>Échographie morphologique (20e semaine)</li>
+</ul>
+
+<strong>Vaccinations</strong>  
+<p>Conseil et administration de toutes les vaccinations recommandées pendant la grossesse.</p>
+
+<strong>Accompagnement à l'accouchement</strong>  
+<p>Collaboration avec la maternité de votre choix.</p>
+
+<hr>
+
+<strong>Gynécologie</strong>
+
+<p>Soins gynécologiques complets pour toutes les étapes de la vie.</p>
+
+<strong>Contrôles annuels</strong>  
+<p>Examens préventifs annuels incluant le dépistage du cancer.</p>
+
+<strong>Consultation d'urgence</strong>  
+<p>Nous sommes là pour vous en cas de troubles aigus.</p>
+
+<strong>Conseil en contraception</strong>  
+<p>Consultation individuelle sur toutes les méthodes contraceptives modernes.</p>
+
+<strong>Diagnostic par ultrasons</strong>  
+<p>Technologie ultrasonore de pointe pour un diagnostic précis.</p>
+
+<strong>Interventions chirurgicales</strong>  
+<p>Petites interventions ambulatoires dans notre cabinet.</p>
+
+<strong>Collaboration</strong>  
+<p>Coopération étroite avec les spécialistes et cliniques de la région.</p>
+</div>
+<div class="lang-content " data-lang="es">
+<h1>Nuestros Servicios</h1>
+
+<strong>Embarazo</strong>
+
+<p>Brindamos atención integral durante todo su embarazo.</p>
+
+<strong>Parteras externas:</strong>
+<ul>
+<li>Partera Anna Müller</li>
+<li>Partera Barbara Schmidt</li>
+<li>Partera Christina Weber</li>
+<li>Partera Diana Fischer</li>
+</ul>
+
+<strong>Control prenatal</strong>  
+<p>Controles regulares según las pautas de maternidad para monitorear su salud y la de su bebé.</p>
+
+<strong>Asesoramiento nutricional</strong>  
+<p>Consulta individual para una nutrición saludable durante el embarazo.</p>
+
+<strong>Exámenes de ultrasonido</strong>
+<ul>
+<li>Ultrasonido temprano (semana 8)</li>
+<li>Cribado del primer trimestre (semana 12)</li>
+<li>Cribado de órganos (semana 20)</li>
+</ul>
+
+<strong>Vacunaciones</strong>  
+<p>Consulta y administración de todas las vacunas recomendadas durante el embarazo.</p>
+
+<strong>Acompañamiento al parto</strong>  
+<p>Colaboración con la clínica de maternidad de su elección.</p>
+
+<hr>
+
+<strong>Ginecología</strong>
+
+<p>Atención ginecológica integral para todas las etapas de la vida.</p>
+
+<strong>Controles anuales</strong>  
+<p>Exámenes preventivos anuales incluyendo detección de cáncer.</p>
+
+<strong>Consulta de emergencia</strong>  
+<p>Estamos aquí para usted en caso de molestias agudas.</p>
+
+<strong>Asesoramiento anticonceptivo</strong>  
+<p>Consulta individual sobre todos los métodos anticonceptivos modernos.</p>
+
+<strong>Diagnóstico por ultrasonido</strong>  
+<p>Tecnología de ultrasonido de última generación para diagnósticos precisos.</p>
+
+<strong>Procedimientos quirúrgicos</strong>  
+<p>Procedimientos ambulatorios menores en nuestra consulta.</p>
+
+<strong>Colaboración</strong>  
+<p>Estrecha cooperación con especialistas y clínicas de la región.</p>
+</div>
+</section>
+<section id="team">
+<div class="lang-content active" data-lang="de">
+<h1>Unser Team</h1>
+
+<img src="images/doctor.jpg" alt="Dr. ABC DEF">
+<strong>Dr. med. ABC DEF</strong>  
+<p>Fachärztin für Gynäkologie und Geburtshilfe FMH</p>
+
+<img src="images/assistant1.jpg" alt="Maria Schmidt">
+<strong>Maria Schmidt</strong>  
+<p>Medizinische Praxisassistentin</p>
+
+<img src="images/assistant2.jpg" alt="Laura Weber">
+<strong>Laura Weber</strong>  
+<p>Medizinische Praxisassistentin</p>
+</div>
+<div class="lang-content " data-lang="en">
+<h1>Our Team</h1>
+
+<img src="images/doctor.jpg" alt="Dr. ABC DEF">
+<strong>Dr. med. ABC DEF</strong>  
+<p>Specialist in Gynecology and Obstetrics FMH</p>
+
+<img src="images/assistant1.jpg" alt="Maria Schmidt">
+<strong>Maria Schmidt</strong>  
+<p>Medical Practice Assistant</p>
+
+<img src="images/assistant2.jpg" alt="Laura Weber">
+<strong>Laura Weber</strong>  
+<p>Medical Practice Assistant</p>
+</div>
+<div class="lang-content " data-lang="fr">
+<h1>Notre Équipe</h1>
+
+<img src="images/doctor.jpg" alt="Dr. ABC DEF">
+<strong>Dr. med. ABC DEF</strong>  
+<p>Spécialiste en Gynécologie et Obstétrique FMH</p>
+
+<img src="images/assistant1.jpg" alt="Maria Schmidt">
+<strong>Maria Schmidt</strong>  
+<p>Assistante médicale</p>
+
+<img src="images/assistant2.jpg" alt="Laura Weber">
+<strong>Laura Weber</strong>  
+<p>Assistante médicale</p>
+</div>
+<div class="lang-content " data-lang="es">
+<h1>Nuestro Equipo</h1>
+
+<img src="images/doctor.jpg" alt="Dr. ABC DEF">
+<strong>Dr. med. ABC DEF</strong>  
+<p>Especialista en Ginecología y Obstetricia FMH</p>
+
+<img src="images/assistant1.jpg" alt="Maria Schmidt">
+<strong>Maria Schmidt</strong>  
+<p>Asistente médica</p>
+
+<img src="images/assistant2.jpg" alt="Laura Weber">
+<strong>Laura Weber</strong>  
+<p>Asistente médica</p>
+</div>
+</section>
+<section id="links">
+<div class="lang-content active" data-lang="de">
+<h1>Nützliche Links</h1>
+
+<ul>
+<li><a href="https://www.sggg.ch">Schweizerische Gesellschaft für Gynäkologie und Geburtshilfe</a></li>
+<li><a href="https://www.usz.ch">Universitätsspital Zürich</a></li>
+<li><a href="https://www.lalecheleague.ch">La Leche League Schweiz</a></li>
+</ul>
+</div>
+<div class="lang-content " data-lang="en">
+<h1>Useful Links</h1>
+
+<ul>
+<li><a href="https://www.sggg.ch">Swiss Society of Gynecology and Obstetrics</a></li>
+<li><a href="https://www.usz.ch">University Hospital Zurich</a></li>
+<li><a href="https://www.lalecheleague.ch">La Leche League Switzerland</a></li>
+</ul>
+</div>
+<div class="lang-content " data-lang="fr">
+<h1>Liens Utiles</h1>
+
+<ul>
+<li><a href="https://www.sggg.ch">Société Suisse de Gynécologie et Obstétrique</a></li>
+<li><a href="https://www.usz.ch">Hôpital Universitaire de Zurich</a></li>
+<li><a href="https://www.lalecheleague.ch">La Leche League Suisse</a></li>
+</ul>
+</div>
+<div class="lang-content " data-lang="es">
+<h1>Enlaces Útiles</h1>
+
+<ul>
+<li><a href="https://www.sggg.ch">Sociedad Suiza de Ginecología y Obstetricia</a></li>
+<li><a href="https://www.usz.ch">Hospital Universitario de Zúrich</a></li>
+<li><a href="https://www.lalecheleague.ch">La Liga de la Leche Suiza</a></li>
+</ul>
+</div>
+</section>
+<section id="gallery">
+<div class="lang-content active" data-lang="de">
+
+</div>
+<div class="lang-content " data-lang="en">
+
+</div>
+<div class="lang-content " data-lang="fr">
+
+</div>
+<div class="lang-content " data-lang="es">
+
+</div>
+</section>
+<section id="impressum">
+<div class="lang-content active" data-lang="de">
+<h1>Impressum</h1>
+
+<strong>Praxis Dr. ABC DEF</strong>  
+<p>Hauptstraße 123  </p>
+<p>12345 Stadt  </p>
+<p>Schweiz</p>
+
+<strong>Telefon:</strong> +49 123 456789  
+<strong>E-Mail:</strong> info@praxis-def.ch
+
+<strong>Berufsbezeichnung:</strong> Fachärztin für Gynäkologie und Geburtshilfe FMH
+
+<strong>Haftungsausschluss</strong>  
+<p>Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
+</div>
+<div class="lang-content " data-lang="en">
+<h1>Legal Notice</h1>
+
+<strong>Practice Dr. ABC DEF</strong>  
+<p>Main Street 123  </p>
+<p>12345 City  </p>
+<p>Switzerland</p>
+
+<strong>Phone:</strong> +49 123 456789  
+<strong>Email:</strong> info@praxis-def.ch
+
+<strong>Professional Title:</strong> Specialist in Gynecology and Obstetrics FMH
+
+<strong>Disclaimer</strong>  
+<p>Despite careful content control, we assume no liability for the content of external links. The operators of the linked pages are exclusively responsible for their content.</p>
+</div>
+<div class="lang-content " data-lang="fr">
+<h1>Mentions Légales</h1>
+
+<strong>Cabinet Dr. ABC DEF</strong>  
+<p>123 Rue Principale  </p>
+<p>12345 Ville  </p>
+<p>Suisse</p>
+
+<strong>Téléphone:</strong> +49 123 456789  
+<strong>E-mail:</strong> info@praxis-def.ch
+
+<strong>Titre professionnel:</strong> Spécialiste en Gynécologie et Obstétrique FMH
+
+<strong>Clause de non-responsabilité</strong>  
+<p>Malgré un contrôle minutieux du contenu, nous déclinons toute responsabilité pour le contenu des liens externes. Les exploitants des pages liées sont exclusivement responsables de leur contenu.</p>
+</div>
+<div class="lang-content " data-lang="es">
+<h1>Aviso Legal</h1>
+
+<strong>Consulta Dr. ABC DEF</strong>  
+<p>Calle Principal 123  </p>
+<p>12345 Ciudad  </p>
+<p>Suiza</p>
+
+<strong>Teléfono:</strong> +49 123 456789  
+<strong>Correo:</strong> info@praxis-def.ch
+
+<strong>Título profesional:</strong> Especialista en Ginecología y Obstetricia FMH
+
+<strong>Descargo de responsabilidad</strong>  
+<p>A pesar del cuidadoso control del contenido, no asumimos ninguna responsabilidad por el contenido de los enlaces externos. Los operadores de las páginas enlazadas son exclusivamente responsables de su contenido.</p>
+</div>
+</section></main>
     <script>
-        // Show current time to prove the page is fresh
-        document.getElementById('time').textContent = new Date().toLocaleString();
+        function setLang(lang) {
+            document.querySelectorAll('.lang-btns button').forEach(b => 
+                b.classList.toggle('active', b.dataset.lang === lang));
+            document.querySelectorAll('.lang-content').forEach(el => 
+                el.classList.toggle('active', el.dataset.lang === lang));
+            document.documentElement.lang = lang;
+        }
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+        document.addEventListener('click', e => {
+            if (!e.target.closest('nav')) document.getElementById('menu').style.display = 'none';
+        });
     </script>
 </body>
 </html>
