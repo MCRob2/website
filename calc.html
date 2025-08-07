@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pregnancy Calculator</title>
+    <style>
+        :root {
+            --bg-main: #1a1a1a;
+            --bg-alt: #2d2d2d;
+            --bg-nav: #1a1a1a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --accent: #5dade2;
+            --accent-hover: #74b9ff;
+            --border: #444;
+        }
+        
+        html {
+            overflow: hidden;
+        }
+            
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html, body {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            touch-action: manipulation;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Navigation styles from index.html */
+        nav { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            height: 40px; 
+            background: var(--bg-nav); 
+            border-bottom: 1px solid var(--border); 
+            display: flex; 
+            align-items: center; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            z-index: 1000; 
+        }
+        .nav-content { 
+            max-width: 400px; 
+            width: 100%; 
+            margin: 0 auto; 
+            padding: 0 20px;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        
+        .nav-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.2;
+            text-align: left;
+            margin-left: -5px;
+        }
+        
+        .nav-controls { display: flex; gap: 12px; align-items: center; }
+        .lang-btns { display: flex; gap: 6px; }
+        .lang-btns button { 
+            border: 1px solid var(--accent); 
+            background: none; 
+            color: var(--accent); 
+            padding: 5px 10px; 
+            cursor: pointer; 
+            border-radius: 3px; 
+            font-size: 14px; 
+        }
+        .lang-btns button.active { background: var(--accent); color: var(--bg-main); }
+        
+        #info-btn { 
+            background: none; 
+            border: 1px solid var(--accent); 
+            color: var(--accent);
+            padding: 5px 10px; 
+            cursor: pointer; 
+            border-radius: 3px; 
+            font-size: 14px; 
+        }
+        #info-btn:hover { background: var(--accent); color: var(--bg-main); }
+        
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin: 64px auto 20px auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 15px;
+        }
+        
+        .card {
+            background: #1c1c1e;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        
+        .card.lmp { background: linear-gradient(135deg, #34c759, #30d158); }
+        .card.edd { background: linear-gradient(135deg, #af52de, #c77dff); }
+        .card.date { background: linear-gradient(135deg, #007aff, #40a9ff); }
+        
+        .card h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .card-subtitle {
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 10px;
+        }
+        
+        .input-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .date-input {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            color: white;
+            font-size: 16px;
+            width: 60%;
+        }
+        
+        .date-input::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+        }
+        
+        .ga-display {
+            background: linear-gradient(135deg, #ff3b30, #ff6961);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        
+        .ga-weeks {
+            font-size: 40px;
+            font-weight: 700;
+            color: white;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        
+        .ga-subtitle {
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .warning {
+            background: rgba(255, 59, 48, 0.1);
+            border: 1px solid rgba(255, 59, 48, 0.3);
+            color: #ff3b30;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .clear-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            padding: 12px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+            width: 120px;
+            flex-shrink: 0;
+            text-align: center;
+        }
+        
+        .clear-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+        
+        .info-overlay {
+            display: none;
+            background: #1c1c1e;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .info-overlay.active { display: block; }
+        
+        .info-overlay h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .info-overlay p {
+            margin-bottom: 12px;
+        }
+        
+        .calculator-content.hidden { display: none; }
+        
+        @media (max-width: 400px) {
+            .container { padding: 10px; margin-top: 58px; }
+            .card { padding: 14px; margin-bottom: 10px; }
+            .ga-display { padding: 18px 14px; }
+            .ga-weeks { font-size: 36px; }
+            .nav-content { padding: 0 15px; }
+            .nav-controls { gap: 8px; }
+            .lang-btns { gap: 4px; }
+            .lang-btns button { padding: 5px 8px; font-size: 13px; }
+            #info-btn { padding: 5px 8px; font-size: 13px; }
+            .clear-btn { width: 100px; font-size: 13px; }
+            .nav-title { font-size: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="nav-title">
+                <div class="lang-content active" data-lang="de">Schwangerschafts<br>Rechner</div>
+                <div class="lang-content" data-lang="en">Pregnancy<br>Calculator</div>
+                <div class="lang-content" data-lang="fr">Calculateur de<br>Grossesse</div>
+                <div class="lang-content" data-lang="es">Calculadora de<br>Embarazo</div>
+            </div>
+            <div class="nav-controls">
+                <div class="lang-btns">
+                    <button onclick="setLang('de')" data-lang="de" class="active">DE</button>
+                    <button onclick="setLang('en')" data-lang="en">EN</button>
+                    <button onclick="setLang('fr')" data-lang="fr">FR</button>
+                    <button onclick="setLang('es')" data-lang="es">ES</button>
+                </div>
+                <button id="info-btn" onclick="toggleInfo()">INFO</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="info-overlay" id="info-content">
+            <div class="lang-content active" data-lang="de">
+                <h3>Schwangerschaftsrechner</h3>
+                <p>Berechnet das Schwangerschaftsalter basierend auf 280 Tagen ab dem ersten Tag der letzten Regelblutung.</p>
+                <p>Geben Sie entweder LP oder ET ein und wählen Sie das Referenzdatum.</p>
+                <p style="text-align: center; margin-top: 20px; color: var(--text-secondary);">Tippen Sie irgendwo, um zurückzukehren</p>
+            </div>
+            <div class="lang-content" data-lang="en">
+                <h3>Pregnancy Calculator</h3>
+                <p>Calculates gestational age based on 280 days from the first day of the last menstrual period.</p>
+                <p>Enter either LMP or EDD and select the reference date.</p>
+                <p style="text-align: center; margin-top: 20px; color: var(--text-secondary);">Tap anywhere to return</p>
+            </div>
+            <div class="lang-content" data-lang="fr">
+                <h3>Calculateur de Grossesse</h3>
+                <p>Calcule l'âge gestationnel basé sur 280 jours depuis le premier jour des dernières règles.</p>
+                <p>Entrez DDR ou DP et sélectionnez la date de référence.</p>
+                <p style="text-align: center; margin-top: 20px; color: var(--text-secondary);">Touchez n'importe où pour revenir</p>
+            </div>
+            <div class="lang-content" data-lang="es">
+                <h3>Calculadora de Embarazo</h3>
+                <p>Calcula la edad gestacional basada en 280 días desde el primer día de la última menstruación.</p>
+                <p>Ingrese FUM o FP y seleccione la fecha de referencia.</p>
+                <p style="text-align: center; margin-top: 20px; color: var(--text-secondary);">Toque en cualquier lugar para volver</p>
+            </div>
+        </div>
+        
+        <div class="calculator-content" id="calc-content">
+            <div class="card lmp">
+                <div class="lang-content active" data-lang="de">
+                    <h2>LP</h2>
+                    <div class="card-subtitle">Letzte Regelblutung, erster Tag</div>
+                </div>
+                <div class="lang-content" data-lang="en">
+                    <h2>LMP</h2>
+                    <div class="card-subtitle">Last Menstrual Period, first day</div>
+                </div>
+                <div class="lang-content" data-lang="fr">
+                    <h2>DDR</h2>
+                    <div class="card-subtitle">Dernières règles, premier jour</div>
+                </div>
+                <div class="lang-content" data-lang="es">
+                    <h2>FUM</h2>
+                    <div class="card-subtitle">Última menstruación, primer día</div>
+                </div>
+                <div class="input-row">
+                    <input type="date" class="date-input" id="lmp-date" onchange="calculateFromLMP()">
+                    <button class="clear-btn" onclick="clearLMP()">
+                        <span class="lang-content active" data-lang="de">Löschen</span>
+                        <span class="lang-content" data-lang="en">Clear</span>
+                        <span class="lang-content" data-lang="fr">Effacer</span>
+                        <span class="lang-content" data-lang="es">Borrar</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="card edd">
+                <div class="lang-content active" data-lang="de">
+                    <h2>ET</h2>
+                    <div class="card-subtitle">Errechneter Geburtstermin</div>
+                </div>
+                <div class="lang-content" data-lang="en">
+                    <h2>EDD</h2>
+                    <div class="card-subtitle">Expected Due Date</div>
+                </div>
+                <div class="lang-content" data-lang="fr">
+                    <h2>DP</h2>
+                    <div class="card-subtitle">Date prévue d'accouchement</div>
+                </div>
+                <div class="lang-content" data-lang="es">
+                    <h2>FP</h2>
+                    <div class="card-subtitle">Fecha esperada de parto</div>
+                </div>
+                <div class="input-row">
+                    <input type="date" class="date-input" id="edd-date" onchange="calculateFromEDD()">
+                    <button class="clear-btn" onclick="clearEDD()">
+                        <span class="lang-content active" data-lang="de">Löschen</span>
+                        <span class="lang-content" data-lang="en">Clear</span>
+                        <span class="lang-content" data-lang="fr">Effacer</span>
+                        <span class="lang-content" data-lang="es">Borrar</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="card date">
+                <div class="lang-content active" data-lang="de">
+                    <h2>Datum</h2>
+                </div>
+                <div class="lang-content" data-lang="en">
+                    <h2>Date</h2>
+                </div>
+                <div class="lang-content" data-lang="fr">
+                    <h2>Date</h2>
+                </div>
+                <div class="lang-content" data-lang="es">
+                    <h2>Fecha</h2>
+                </div>
+                <div class="input-row">
+                    <input type="date" class="date-input" id="reference-date" onchange="calculate()">
+                    <button class="clear-btn" onclick="resetToday()">
+                        <span class="lang-content active" data-lang="de">Heute</span>
+                        <span class="lang-content" data-lang="en">Today</span>
+                        <span class="lang-content" data-lang="fr">ajd</span>
+                        <span class="lang-content" data-lang="es">Hoy</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="ga-display">
+                <div class="ga-weeks" id="ga-result">   </div>
+                <div class="ga-subtitle" id="ga-subtitle">
+                    <span class="lang-content active" data-lang="de">SSW</span>
+                    <span class="lang-content" data-lang="en">weeks</span>
+                    <span class="lang-content" data-lang="fr">SA</span>
+                    <span class="lang-content" data-lang="es">semanas</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.querySelectorAll('.lang-btns button').forEach(b => 
+                b.classList.toggle('active', b.dataset.lang === lang));
+            document.querySelectorAll('.lang-content').forEach(el => 
+                el.classList.toggle('active', el.dataset.lang === lang));
+            document.documentElement.lang = lang;
+        }
+        
+        function toggleInfo() {
+            const infoContent = document.getElementById('info-content');
+            const calcContent = document.getElementById('calc-content');
+            
+            if (infoContent.classList.contains('active')) {
+                // Hide info, show calculator
+                infoContent.classList.remove('active');
+                calcContent.classList.remove('hidden');
+            } else {
+                // Show info, hide calculator
+                infoContent.classList.add('active');
+                calcContent.classList.add('hidden');
+            }
+        }
+        
+        // Click anywhere to return from info view
+        document.addEventListener('click', function(event) {
+            const infoContent = document.getElementById('info-content');
+            const infoBtn = document.getElementById('info-btn');
+            
+            // If info is showing and click is not on the info button
+            if (infoContent.classList.contains('active') && event.target !== infoBtn) {
+                toggleInfo();
+            }
+        });
+        
+        // Set today's date as default
+        document.getElementById('reference-date').value = formatDateForInput(new Date());
+        
+        let lastChanged = null; // Track which field was last changed
+        
+        function vibrate(duration = 50) {
+            if (navigator.vibrate) {
+                navigator.vibrate(duration);
+            }
+        }
+        
+        function calculateFromLMP() {
+            vibrate(25);
+            lastChanged = 'lmp';
+            calculate();
+        }
+        
+        function calculateFromEDD() {
+            vibrate(25);
+            lastChanged = 'edd';
+            calculate();
+        }
+        
+        function calculateGestationalAge(lmpDate, referenceDate) {
+            const lmp = new Date(lmpDate);
+            const ref = new Date(referenceDate);
+            const diffTime = ref - lmp;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            
+            const weeks = Math.floor(diffDays / 7);
+            const days = diffDays % 7;
+            
+            return { weeks, days, totalDays: diffDays };
+        }
+        
+        function calculate() {
+            const lmpDate = document.getElementById('lmp-date').value;
+            const eddDate = document.getElementById('edd-date').value;
+            const referenceDate = document.getElementById('reference-date').value;
+            
+            if (!referenceDate) return;
+            
+            let calculatedLMP = null;
+            
+            // Use the field that was last changed as source of truth
+            if (lastChanged === 'lmp' && lmpDate) {
+                calculatedLMP = lmpDate;
+                // Calculate EDD from LMP
+                const lmp = new Date(lmpDate);
+                const edd = new Date(lmp.getTime() + (280 * 24 * 60 * 60 * 1000));
+                document.getElementById('edd-date').value = formatDateForInput(edd);
+            } else if (lastChanged === 'edd' && eddDate) {
+                // Calculate LMP from EDD
+                const edd = new Date(eddDate);
+                const lmp = new Date(edd.getTime() - (280 * 24 * 60 * 60 * 1000));
+                calculatedLMP = formatDateForInput(lmp);
+                document.getElementById('lmp-date').value = calculatedLMP;
+            } else if (lmpDate) {
+                // Fallback to LMP if no specific field was tracked
+                calculatedLMP = lmpDate;
+            } else if (eddDate) {
+                // Fallback to EDD if no LMP
+                const edd = new Date(eddDate);
+                const lmp = new Date(edd.getTime() - (280 * 24 * 60 * 60 * 1000));
+                calculatedLMP = formatDateForInput(lmp);
+                document.getElementById('lmp-date').value = calculatedLMP;
+            }
+            
+            if (calculatedLMP) {
+                const ga = calculateGestationalAge(calculatedLMP, referenceDate);
+                updateGADisplay(ga);
+            } else {
+                clearResults();
+            }
+        }
+        
+        function updateGADisplay(ga) {
+            const gaResult = document.getElementById('ga-result');
+            
+            if (ga.totalDays < 10) {
+                gaResult.textContent = '< 2+0 ?';
+                updateSubtitle('before');
+            } else if (ga.totalDays > 294) { // 42 weeks
+                gaResult.textContent = `> 42+0 !`;
+                updateSubtitle('weeks');
+            } else {
+                gaResult.textContent = `${ga.weeks}+${ga.days}`;
+                updateSubtitle('weeks');
+            }
+        }
+        
+        function updateSubtitle(type) {
+            const subtitle = document.getElementById('ga-subtitle');
+            if (type === 'before') {
+                subtitle.innerHTML = `
+                    <span class="lang-content ${document.querySelector('[data-lang="de"]').classList.contains('active') ? 'active' : ''}" data-lang="de">vor Empfängnis</span>
+                    <span class="lang-content ${document.querySelector('[data-lang="en"]').classList.contains('active') ? 'active' : ''}" data-lang="en">before conception</span>
+                    <span class="lang-content ${document.querySelector('[data-lang="fr"]').classList.contains('active') ? 'active' : ''}" data-lang="fr">avant conception</span>
+                    <span class="lang-content ${document.querySelector('[data-lang="es"]').classList.contains('active') ? 'active' : ''}" data-lang="es">antes concepción</span>
+                `;
+            } else {
+                subtitle.innerHTML = `
+                    <span class="lang-content ${document.querySelector('[data-lang="de"]').classList.contains('active') ? 'active' : ''}" data-lang="de">SSW</span>
+                    <span class="lang-content ${document.querySelector('[data-lang="en"]').classList.contains('active') ? 'active' : ''}" data-lang="en">weeks</span>
+                    <span class="lang-content ${document.querySelector('[data-lang="fr"]').classList.contains('active') ? 'active' : ''}" data-lang="fr">SA</span>
+                    <span class="lang-content ${document.querySelector('[data-lang="es"]').classList.contains('active') ? 'active' : ''}" data-lang="es">semanas</span>
+                `;
+            }
+        }
+        
+        function clearResults() {
+            const gaResult = document.getElementById('ga-result');
+            gaResult.textContent = '  +  ';
+            updateSubtitle('weeks');
+        }
+        
+        function formatDateForInput(date) {
+            return date.toISOString().split('T')[0];
+        }
+        
+        function clearLMP() {
+            vibrate();
+            document.getElementById('lmp-date').value = '';
+            document.getElementById('edd-date').value = '';
+            lastChanged = null;
+            clearResults();
+        }
+        
+        function clearEDD() {
+            vibrate();
+            document.getElementById('lmp-date').value = '';
+            document.getElementById('edd-date').value = '';
+            lastChanged = null;
+            clearResults();
+        }
+        
+        function resetToday() {
+            vibrate();
+            document.getElementById('reference-date').value = formatDateForInput(new Date());
+            calculate();
+        }
+        
+        // Prevent double-tap zoom on iOS
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+        
+        // Auto-calculate when page loads if dates are present
+        calculate();
+    </script>
+</body>
+</html>

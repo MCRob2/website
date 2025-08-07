@@ -2,647 +2,1131 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. ABC DEF</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>Website</title>
     <style>
+        :root {
+            --bg-main: #1a1a1a;
+            --bg-alt: #2d2d2d;
+            --bg-nav: #222222;
+            --text-primary: #f0f0f0;
+            --text-secondary: #b0b0b0;
+            --accent: #5dade2;
+            --accent-hover: #74b9ff;
+            --border: #444;
+            --menu-hover: #2d2d2d;
+        }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; line-height: 1.6; color: #333; }
-        nav { position: fixed; top: 0; left: 0; right: 0; height: 60px; background: white; 
-               border-bottom: 1px solid #ddd; display: flex; align-items: center; 
-               padding: 0 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 1000; }
-        .nav-content { max-width: 900px; width: 100%; margin: 0 auto; 
-                        display: flex; justify-content: space-between; align-items: center; }
-        #menu-btn { background: #2c3e50; color: white; border: none; 
-                     padding: 8px 16px; cursor: pointer; border-radius: 4px; }
-        .lang-btns { display: flex; gap: 8px; }
-        .lang-btns button { border: 1px solid #2c3e50; background: none; color: #2c3e50; 
-                             padding: 6px 12px; cursor: pointer; border-radius: 3px; }
-        .lang-btns button.active { background: #2c3e50; color: white; }
-        #menu { position: fixed; top: 60px; left: 0; right: 0; background: white; 
-                 border-bottom: 1px solid #ddd; display: none; max-width: 900px; margin: 0 auto; }
-        #menu a { display: block; padding: 12px 20px; text-decoration: none; color: #333; 
-                   border-bottom: 1px solid #eee; }
-        #menu a:hover { background: #f5f5f5; padding-left: 30px; }
-        main { margin-top: 80px; }
-        section { max-width: 900px; margin: 0 auto; padding: 60px 20px; min-height: 50vh; }
-        section:nth-child(even) { background: #f5f5f5; }
-        h1 { font-size: 2.5em; margin-bottom: 20px; color: #2c3e50; }
-        h2 { font-size: 1.8em; margin: 30px 0 15px 0; color: #2c3e50; }
-        h3 { font-size: 1.3em; margin: 20px 0 10px 0; }
-        p { margin-bottom: 15px; }
-        .monospace { font-family: "Courier New", Courier, monospace; background: #f5f5f5; padding: 15px; 
-                      border-radius: 4px; margin: 15px 0; white-space: pre; }
-        .button { display: inline-block; padding: 12px 24px; background: #3498db; 
-                   color: white; text-decoration: none; border-radius: 5px; margin: 10px 0; }
-        .button:hover { background: #2980b9; }
-        a { color: #3498db; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        ul { margin: 15px 0 15px 30px; }
-        li { margin-bottom: 8px; }
-        img { max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px; }
-        hr { border: none; border-top: 1px solid #ddd; margin: 30px 0; }
+        html { scroll-padding-top: 50px; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; 
+            font-size: 16px;
+            line-height: 1.5; 
+            color: var(--text-primary); 
+            background: var(--bg-main); 
+        }
+        
+        nav { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            height: 40px; 
+            background: var(--bg-nav); 
+            border-bottom: 1px solid var(--border); 
+            display: flex; 
+            align-items: center; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            z-index: 1000; 
+        }
+        .nav-content { 
+            max-width: 900px; 
+            width: 100%; 
+            margin: 0 auto; 
+            padding: 0 10px;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        
+        .nav-left { display: flex; gap: 8px; align-items: center; }
+        
+        #menu-btn, #calc-btn { 
+            background: var(--accent); 
+            color: var(--bg-main); 
+            border: none; 
+            padding: 8px 30px; 
+            cursor: pointer; 
+            border-radius: 4px; 
+            font-size: 14px; 
+        }
+        #menu-btn:hover, #calc-btn:hover { background: var(--accent-hover); }
+        
+        .nav-controls { display: flex; gap: 12px; align-items: center; }
+        .lang-btns { display: flex; gap: 6px; }
+        .lang-btns button { 
+            border: 1px solid var(--accent); 
+            background: none; 
+            color: var(--accent); 
+            padding: 5px 10px; 
+            cursor: pointer; 
+            border-radius: 3px; 
+            font-size: 14px; 
+        }
+        .lang-btns button.active { background: var(--accent); color: var(--bg-main); }
+        
+        #theme-btn { 
+            background: none; 
+            border: 1px solid var(--accent); 
+            color: var(--accent);
+            padding: 5px 10px; 
+            cursor: pointer; 
+            border-radius: 3px; 
+            font-size: 14px; 
+        }
+        #theme-btn:hover { background: var(--accent); color: var(--bg-main); }
+        
+        #menu { 
+            position: fixed; 
+            top: 40px; 
+            left: 0; 
+            right: 0; 
+            background: var(--bg-nav); 
+            border-bottom: 1px solid var(--border); 
+            display: none; 
+        }
+        .menu-content { max-width: 900px; margin: 0 auto; padding: 0 10px; }
+        #menu a { 
+            display: block; 
+            padding: 12px 0; 
+            text-decoration: none; 
+            color: var(--text-primary); 
+            border-bottom: 1px solid var(--border); 
+        }
+        #menu a:hover { 
+            background: var(--menu-hover); 
+            padding: 12px 0 12px 10px; 
+        }
+        
+        main { margin-top: 40px; }
+        section { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 5px 10px;  
+        }
+
+        h1 { 
+            font-size: 2.5em; 
+            margin: 8px 0 4px 0; 
+            color: var(--text-primary); 
+        }
+        h2 { 
+            font-size: 1.8em; 
+            margin: 8px 0 4px 0; 
+            color: var(--text-primary); 
+        }
+        h3 { 
+            font-size: 1.3em; 
+            margin: 8px 0 4px 0; 
+            color: var(--text-primary); 
+        }
+        p { 
+            margin: 2px 0 2px 0; 
+            line-height: 1.5; 
+        }
+                
+        .button { 
+            display: inline-block; 
+            padding: 12px 20px; 
+            background: var(--accent); 
+            color: var(--bg-main); 
+            text-decoration: none; 
+            border-radius: 5px; 
+            margin: 10px 0 10px 0; 
+        }
+        .button:hover { background: var(--accent-hover); }
+        
+        a { color: var(--accent); text-decoration: none; }
+        
+        ul { 
+            margin: 0px 0 0px 30px; 
+        }
+        li { margin-bottom: 0px; }
+        
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            margin: 0px 0 0px 0; 
+            border-radius: 8px; 
+        }
+        
+        hr { 
+            border: none; 
+            border-top: 1px solid var(--border); 
+            margin: 20px 0 20px 0; 
+        }
+        
         .lang-content { display: none; }
         .lang-content.active { display: block; }
         strong { font-weight: 600; }
         em { font-style: italic; }
+        
+        .monospace { 
+            font-family: "Courier New", Courier, monospace; 
+            display: block;
+            margin: 5px 0 5px 0; 
+            line-height: 1.5; 
+            white-space: pre-wrap;
+            font-weight: bold; 
+        }
+        
+        .image-container { margin: 20px 0; }
+        .image-container.center { text-align: center; }
+        .image-container.left { float: left; margin-right: 20px; }
+        .image-container.right { float: right; margin-left: 20px; }
+        
+        .image-with-column { 
+            display: flex; 
+            gap: 20px; 
+            align-items: flex-start; 
+            margin: 20px 0; 
+        }
+        .image-with-column img { margin: 0; }
+        .image-column-text { flex: 1; }
+        
+        .clearfix { clear: both; }
+        
         @media (max-width: 768px) {
             h1 { font-size: 2em; }
             h2 { font-size: 1.5em; }
-            section { padding: 40px 15px; }
+            section { padding: 5px 10px; }
+            .nav-content { padding: 0 10px; }
+            .menu-content { padding: 0 10px; }
+            .nav-controls { gap: 8px; }
+            .lang-btns { gap: 4px; }
+            .lang-btns button { padding: 5px 8px; font-size: 13px; }
+            #theme-btn { padding: 5px 8px; font-size: 13px; }
+            #menu-btn, #calc-btn { padding: 5px 20px; font-size: 13px; }
+            .image-with-column { flex-direction: column; }
+            .image-container.left, .image-container.right { 
+                float: none; 
+                margin: 20px 0; 
+            }
         }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-content">
-            <button id="menu-btn" onclick="toggleMenu()">☰ Menu</button>
-            <div class="lang-btns">
-                <button onclick="setLang('de')" data-lang="de" class="active">DE</button>
-                <button onclick="setLang('en')" data-lang="en">EN</button>
-                <button onclick="setLang('fr')" data-lang="fr">FR</button>
-                <button onclick="setLang('es')" data-lang="es">ES</button>
+            <div class="nav-left">
+                <button id="menu-btn" onclick="toggleMenu()">☰</button>
+                <a href="calc.html" id="calc-btn">🔢️</a>
+            </div>
+            <div class="nav-controls">
+                <div class="lang-btns">
+                    <button onclick="setLang('de')" data-lang="de" class="active">DE</button>
+                    <button onclick="setLang('en')" data-lang="en">EN</button>
+                    <button onclick="setLang('fr')" data-lang="fr">FR</button>
+                    <button onclick="setLang('es')" data-lang="es">ES</button>
+                </div>
+                <button id="theme-btn" onclick="toggleTheme()">☀️</button>
             </div>
         </div>
     </nav>
-    <div id="menu"><a href="#home">Startseite</a>
-<a href="#über uns">Über uns</a>
-<a href="#angebot">Angebot</a>
-<a href="#kontakt">Kontakt</a>
+    <div id="menu">
+        <div class="menu-content"><a href="#kontakt">Kontakt</a>
 <a href="#sprechzeiten">Sprechzeiten</a>
+<a href="#angebot">Angebot</a>
 <a href="#team">Team</a>
-<a href="#links">Links</a>
-<a href="#impressum">Impressum</a></div>
+<a href="impressum.html">Impressum</a></div>
+    </div>
     <main><section id="home">
 <div class="lang-content active" data-lang="de">
-<h1>Dr. ABC DEF</h1>
-<p>Praxis für Gynäkologie und Geburtshilfe  </p>
-<p>Fachärztin FMH für Gynäkologie und Geburtshilfe  </p>
-<p>Schwerpunkt: Ultraschalldiagnostik</p>
 
-<img src="images/entrance.jpg" alt="Praxis Eingang">
 </div>
 <div class="lang-content " data-lang="en">
-<h1>Dr. ABC DEF</h1>
-<p>Practice for Gynecology and Obstetrics  </p>
-<p>Specialist FMH in Gynecology and Obstetrics  </p>
-<p>Focus: Ultrasound Diagnostics</p>
 
-<img src="images/entrance.jpg" alt="Practice Entrance">
 </div>
 <div class="lang-content " data-lang="fr">
-<h1>Dr. ABC DEF</h1>
-<p>Cabinet de Gynécologie et Obstétrique  </p>
-<p>Spécialiste FMH en Gynécologie et Obstétrique  </p>
-<p>Spécialisation: Diagnostic par ultrasons</p>
 
-<img src="images/entrance.jpg" alt="Entrée du cabinet">
 </div>
 <div class="lang-content " data-lang="es">
-<h1>Dr. ABC DEF</h1>
-<p>Consulta de Ginecología y Obstetricia  </p>
-<p>Especialista FMH en Ginecología y Obstetricia  </p>
-<p>Especialidad: Diagnóstico por ultrasonido</p>
 
-<img src="images/entrance.jpg" alt="Entrada de la consulta">
 </div>
 </section>
 <section id="kontakt">
 <div class="lang-content active" data-lang="de">
-<strong>Adresse:</strong>  
-<p>Hauptstraße 123  </p>
-<p>12345 Stadt</p>
+<div style="text-align: center;">
 
-<strong>Telefon:</strong> +49 123 456789
+<h2>Dr. med. Robert Oehler</h2>
+<h3>Frauenarzt-Praxis in Biel</h3>
+<p>FMH Gynäkologie und Geburtshilfe</p>
+<p>Schwangerschafts-Ultraschall</p>
+<p>Operationen, ambulant und stationär</p>
 
-<a href="tel:+491234567890" class="button">Jetzt anrufen</a>
+<br>
+
+<p>Unionsgasse 14</p>
+<p>Medizinisches Zentrum Biel</p>
+<p>2502 Biel</p>
+
+<h3>Tel 032 344 46 40</h3>
+
+<p style='text-align: center;'><a href='tel:+41323444640' class='button'>Jetzt anrufen</a></p>
+
+<br>
+
+<p>deutsch</p>
+<p>français</p>
+<p>english</p>
+<p>español</p>
+
+<br>
+
+</div>
+
+
+<div class="image-container center"><img src="images/eingang.jpg" alt="eingang" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="en">
-<strong>Address:</strong>  
-<p>Main Street 123  </p>
-<p>12345 City</p>
+<div style="text-align: center;">
 
-<strong>Phone:</strong> +49 123 456789
+<h2>Robert Oehler, MD</h2>
+<h3>Gynecology Practice in Biel</h3>
+<p>FMH Specialist in Obstetrics and Gynecology</p>
+<p>Pregnancy Ultrasound</p>
+<p>Operations, outpatient and inpatient</p>
 
-<a href="tel:+491234567890" class="button">Call now</a>
+<br>
+
+<p>Unionsgasse 14</p>
+<p>Medizinisches Zentrum Biel</p>
+<p>2502 Biel</p>
+
+<h3>Tel 032 344 46 40</h3>
+
+<p style='text-align: center;'><a href='tel:+41323444640' class='button'>Call now</a></p>
+
+<br>
+
+<p>deutsch</p>
+<p>français</p>
+<p>english</p>
+<p>español</p>
+
+<br>
+
+</div>
+
+
+<div class="image-container center"><img src="images/eingang.jpg" alt="eingang" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="fr">
-<strong>Adresse:</strong>  
-<p>123 Rue Principale  </p>
-<p>12345 Ville</p>
+<div style="text-align: center;">
 
-<strong>Téléphone:</strong> +49 123 456789
+<h2>Dr méd. Robert Oehler</h2>
+<h3>Cabinet de gynéco à Bienne</h3>
+<p>FMH Spécialiste Gynécologie et Obstétrique</p>
+<p>Échographie de grossesse</p>
+<p>Opérations, ambulatoires et stationnaires</p>
 
-<a href="tel:+491234567890" class="button">Appeler maintenant</a>
+<br>
+
+<p>Rue de l'Union 14</p>
+<p>Centre Medical Bienne</p>
+<p>2502 Bienne</p>
+
+<h3>Tel 032 344 46 40</h3>
+
+<p style='text-align: center;'><a href='tel:+41323444640' class='button'>Appeler maintenant</a></p>
+
+<br>
+
+<p>deutsch</p>
+<p>français</p>
+<p>english</p>
+<p>español</p>
+
+<br>
+
+</div>
+
+
+<div class="image-container center"><img src="images/eingang.jpg" alt="eingang" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="es">
-<strong>Dirección:</strong>  
-<p>Calle Principal 123  </p>
-<p>12345 Ciudad</p>
+<div style="text-align: center;">
 
-<strong>Teléfono:</strong> +49 123 456789
+<h2>Dr. Robert Oehler</h2>
+<h3>Consulta Ginecología en Bienna</h3>
+<p>FMH Especialista en ginecología y obstetricia</p>
+<p>Ecografía del embarazo</p>
+<p>Operaciones, ambulatorias y hospitalarias</p>
 
-<a href="tel:+491234567890" class="button">Llamar ahora</a>
+<br>
+
+<p>Unionsgasse 14</p>
+<p>Medizinisches Zentrum Biel</p>
+<p>2502 Biel</p>
+
+<h3>Tel 032 344 46 40</h3>
+
+<p style='text-align: center;'><a href='tel:+41323444640' class='button'>Llamar ahora</a></p>
+
+<br>
+
+<p>deutsch</p>
+<p>français</p>
+<p>english</p>
+<p>español</p>
+
+<br>
+
+</div>
+
+
+<div class="image-container center"><img src="images/eingang.jpg" alt="eingang" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 </div>
 </section>
 <section id="sprechzeiten">
 <div class="lang-content active" data-lang="de">
-<strong>Unsere Sprechzeiten:</strong>
+<div style="text-align: center;">
+<h2>Sprechstunde</h2>
 
-<div class="monospace">
-<p>Mo: 07:15 - 12:00  13:30 - 17:00</p>
-<p>Di: 08:00 - 12:00  14:00 - 18:00</p>
-<p>Mi: 07:15 - 12:00  geschlossen</p>
-<p>Do: 08:00 - 12:00  13:30 - 17:00</p>
-<p>Fr: 07:15 - 13:00  geschlossen</p>
+<div class="monospace">Mo 07:15 - 12:00  13:30 - 17:00
+Di 07:15 - 12:00  13:30 - 17:00
+Mi 07:15 - 12:00  13:30 - 17:00
+Do 07:15 - 12:00  13:30 - 17:00
+Fr   Operationen im SZB und AOP</div>
 </div>
 
-<p>Termine nach Vereinbarung</p>
+
+<div class="image-container center"><img src="images/sono.jpg" alt="sono" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="en">
-<strong>Our Office Hours:</strong>
+<div style="text-align: center;">
+<h2>Office Hours</h2>
 
-<div class="monospace">
-<p>Mo: 07:15 - 12:00  13:30 - 17:00</p>
-<p>Tu: 08:00 - 12:00  14:00 - 18:00</p>
-<p>We: 07:15 - 12:00  closed</p>
-<p>Th: 08:00 - 12:00  13:30 - 17:00</p>
-<p>Fr: 07:15 - 13:00  closed</p>
+<div class="monospace">Mon 07:15 - 12:00  13:30 - 17:00
+Tue 07:15 - 12:00  13:30 - 17:00
+Wed 07:15 - 12:00  13:30 - 17:00
+Thu 07:15 - 12:00  13:30 - 17:00
+Fri    Operations at SZB and AOP</div>
 </div>
 
-<p>Appointments by arrangement</p>
+
+
+
+<div class="image-container center"><img src="images/sono.jpg" alt="sono" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="fr">
-<strong>Nos horaires:</strong>
+<div style="text-align: center;">
+<h2>Heures de consultation</h2>
 
-<div class="monospace">
-<p>Lu: 07:15 - 12:00  13:30 - 17:00</p>
-<p>Ma: 08:00 - 12:00  14:00 - 18:00</p>
-<p>Me: 07:15 - 12:00  fermé</p>
-<p>Je: 08:00 - 12:00  13:30 - 17:00</p>
-<p>Ve: 07:15 - 13:00  fermé</p>
+<div class="monospace">Lu 07:15 - 12:00  13:30 - 17:00
+Ma 07:15 - 12:00  13:30 - 17:00
+Me 07:15 - 12:00  13:30 - 17:00
+Je 07:15 - 12:00  13:30 - 17:00
+Ve     Opérations au SZB et AOP</div>
 </div>
 
-<p>Rendez-vous sur rendez-vous</p>
+
+
+
+<div class="image-container center"><img src="images/sono.jpg" alt="sono" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="es">
-<strong>Nuestro horario:</strong>
+<div style="text-align: center;">
+<h2>Horario de consulta</h2>
 
-<div class="monospace">
-<p>Lu: 07:15 - 12:00  13:30 - 17:00</p>
-<p>Ma: 08:00 - 12:00  14:00 - 18:00</p>
-<p>Mi: 07:15 - 12:00  cerrado</p>
-<p>Ju: 08:00 - 12:00  13:30 - 17:00</p>
-<p>Vi: 07:15 - 13:00  cerrado</p>
+<div class="monospace">Lu 07:15 - 12:00  13:30 - 17:00
+Ma 07:15 - 12:00  13:30 - 17:00
+Mi 07:15 - 12:00  13:30 - 17:00
+Ju 07:15 - 12:00  13:30 - 17:00
+Vi     Operaciones en SZB y AOP</div>
 </div>
 
-<p>Citas con cita previa</p>
+
+
+
+<div class="image-container center"><img src="images/sono.jpg" alt="sono" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 </div>
 </section>
 <section id="info">
 <div class="lang-content active" data-lang="de">
-<strong>Wichtige Informationen:</strong>
+<h2>Aktuelle Informationen</h2>
 
-<p>Wir nehmen neue Patientinnen auf.</p>
 
-<p>Bitte bringen Sie zu Ihrem ersten Termin Ihre Krankenversicherungskarte mit.</p>
+<p>Wir nehmen auch neue Patientinnen auf, für reguläre Kontrollen, Notfälle, Zweitmeinungen, Frühschwangerschaften.</p>
+<br>
+<p>Bitte bringt zu jedem Termin Eure Krankenkassenkarte mit.</p>
+<br>
+<p>Nächste Ferien 3.10.2025 - 19.10.2025</p>
+<br>
+
+<h2>Im Notfall</h2>
+
+<p>032 324 17 20 Gynäkologie SZB</p>
+<p>032 324 20 11 Hebammen Gebärsaal SZB</p>
+
+
+
+<div class="image-container center"><img src="images/frau.jpg" alt="frau" loading="lazy" style="width: 70%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="en">
-<strong>Important Information:</strong>
+<h2>Current Information</h2>
 
-<p>We are accepting new patients.</p>
 
-<p>Please bring your health insurance card to your first appointment.</p>
+<p>We are still accepting new patients for regular check-ups, emergencies, second opinions, early pregnancies.</p>
+<br>
+<p>Please bring your insurance card to every appointment.</p>
+<br>
+<p>Next vacation 3.10.2025 - 19.10.2025</p>
+<br>
+
+<h2>In case of emergency</h2>
+
+<p>032 324 17 20 Gynecology SZB</p>
+<p>032 324 20 11 Obstetrics SZB</p>
+
+
+
+<div class="image-container center"><img src="images/frau.jpg" alt="frau" loading="lazy" style="width: 70%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="fr">
-<strong>Informations importantes:</strong>
+<h2>Informations actuelles</h2>
 
-<p>Nous acceptons de nouvelles patientes.</p>
 
-<p>Veuillez apporter votre carte d'assurance maladie à votre premier rendez-vous.</p>
+<p>Nous acceptons de nouvelles patientes pour les contrôles réguliers, les urgences, les deuxièmes avis, les grossesses précoces.</p>
+<br>
+<p>Veuillez apporter votre carte d'assurance maladie à chaque rendez-vous.</p>
+<br>
+<p>Prochaines vacances 3.10.2025 - 19.10.2025</p>
+<br>
+
+<h2>En cas d'urgence</h2>
+
+<p>032 324 17 20 Gynécologie SZB</p>
+<p>032 324 20 11 Sages-femmes SZB</p>
+
+
+
+<div class="image-container center"><img src="images/frau.jpg" alt="frau" loading="lazy" style="width: 70%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="es">
-<strong>Información importante:</strong>
+<h2>Información actual</h2>
 
-<p>Aceptamos nuevas pacientes.</p>
 
-<p>Por favor traiga su tarjeta de seguro médico a su primera cita.</p>
+<p>También aceptamos nuevas pacientes para controles regulares, emergencias, segundas opiniones, embarazos tempranos.</p>
+<br>
+<p>Por favor traigan su tarjeta de seguro médico a cada cita.</p>
+<br>
+<p>Próximas vacaciones 3.10.2025 - 19.10.2025</p>
+<br>
+
+<h2>En caso de emergencia</h2>
+
+<p>032 324 17 20 Ginecología SZB</p>
+<p>032 324 20 11 Matronas Sala de partos SZB</p>
+
+
+
+<div class="image-container center"><img src="images/frau.jpg" alt="frau" loading="lazy" style="width: 70%; max-width: 100%;"></div>
 </div>
 </section>
 <section id="angebot">
 <div class="lang-content active" data-lang="de">
-<h1>Unser Angebot</h1>
+<h2>Unser Angebot</h2>
 
-<strong>Schwangerschaft</strong>
+<h3>Schwangerschaft</h3>
+<p>Wir begleiten Euch in der gesamten Schwangerschaft bis zum Geburtstermin.</p>
 
-<p>Wir begleiten Sie während Ihrer gesamten Schwangerschaft mit umfassender Betreuung.</p>
+<h3>Schwangerschaftskontrollen</h3>
+<p>Circa alle 4 Wochen ist eine Kontrolle empfohlen.</p>
+<p>Bei Risikoschwangerschaften oder in Notfällen gibt es flexible und häufige Kontrollen.</p>
+<p>Blutentnahmen, Urinanalyse, Blutdruckmessung, Gewichtsverlauf.</p>
+<p>Testen der Eisenreserven, Gabe von Eiseninfusionen.</p>
+<p>Koordination mit der betreuenden Hebamme</p>
 
-<strong>Externe Hebammen:</strong>
+
+
+<div class="image-container center"><img src="images/3d.jpg" alt="3d" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+
+
+
+
+<div class="clearfix"></div><h3>Ultraschalluntersuchungen</h3>
 <ul>
-<li>Hebamme Anna Müller</li>
-<li>Hebamme Barbara Schmidt</li>
-<li>Hebamme Christina Weber</li>
-<li>Hebamme Diana Fischer</li>
+<li>Früher Ultraschall (7-8 Wochen)</li>
+<li>Ersttrimesterscreening (12-14 Wochen)</li>
+<li>Organscreening, Herz (20-24 Wochen)</li>
+<li>Wachstums-Kontrolle (30-32. Woche)</li>
+<li>3D/4D Ultraschall</li>
 </ul>
 
-<strong>Schwangerschaftskontrollen</strong>  
-<p>Regelmäßige Untersuchungen nach den Mutterschaftsrichtlinien zur Überwachung Ihrer und der Gesundheit Ihres Babys.</p>
 
-<strong>Ernährungsberatung</strong>  
+
+<h3>Ernährungsberatung  </h3>
 <p>Individuelle Beratung für eine gesunde Ernährung während der Schwangerschaft.</p>
 
-<strong>Ultraschalluntersuchungen</strong>
+
+<h3>Impfungen  </h3>
+<p>Beratung zu den empfohlenen Impfungen in der Schwangerschaft.</p>
+<p>(Keuchhusten-Booster, Grippe, ...)</p>
+
+<h3>Geburtsbegleitung durch Hebammen und Spital</h3>
 <ul>
-<li>Früher Ultraschall (8. Woche)</li>
-<li>Ersttrimesterscreening (12. Woche)</li>
-<li>Organscreening (20. Woche)</li>
+<li>Hebammen Gebärsaal Spitalzentrum Biel</li>
+<li>Hebammen-Praxis Biel-Bienne (Elena Käser, Sabina Schöni, Karin Lüthi, Sara Stoll)</li>
+<li>Hebamme Ursula Schüpbach, Biel, Hausgeburten</li>
+<li>Hebamme Monika Gfeller, Biel, Hausgeburten</li>
+<li>Geplante Kaiserschnitte im Spitalzentrum Biel als Belegarzt</li>
 </ul>
 
-<strong>Impfungen</strong>  
-<p>Beratung und Durchführung aller empfohlenen Impfungen in der Schwangerschaft.</p>
 
-<strong>Geburtsbegleitung</strong>  
-<p>Zusammenarbeit mit der Geburtsklinik Ihrer Wahl.</p>
+<div class="image-container center"><img src="images/anat.jpg" alt="anat" loading="lazy" style="width: 70%; max-width: 100%;"></div>
 
-<hr>
-
-<strong>Gynäkologie</strong>
+<div class="clearfix"></div><h2>Gynäkologie</h2>
 
 <p>Umfassende gynäkologische Betreuung für alle Lebensphasen.</p>
 
-<strong>Jahreskontrollen</strong>  
-<p>Jährliche Vorsorgeuntersuchungen inklusive Krebsvorsorge.</p>
+<h3>Jahreskontrollen  </h3>
+<p>PAP-Abstriche alle 1-3 Jahre</p>
+<p>Brustkontrolle und Anleitung zur Selbstuntersuchung</p>
+<p>Vaginalflora und Intimhygiene</p>
+<p>Ultraschall (Kontrolle Myome, Zysten)</p>
 
-<strong>Notfallsprechstunde</strong>  
-<p>Bei akuten Beschwerden sind wir für Sie da.</p>
+<h3>Notfallsprechstunde  </h3>
+<p>Bei akuten Beschwerden sind wir für Euch da, telefonisch oder über kurzfristige Notfall-Termine.</p>
 
-<strong>Verhütungsberatung</strong>  
-<p>Individuelle Beratung zu allen modernen Verhütungsmethoden.</p>
 
-<strong>Ultraschalldiagnostik</strong>  
-<p>Modernste Ultraschalltechnik für präzise Diagnostik.</p>
+<h3>Verhütungsberatung  </h3>
+<p>Beratung zu allen modernen Verhütungsmethoden.</p>
+<p>Von der Pille über die Kupfer-Spirale bis zur operativen Eileiterunterbindung.</p>
+<p>Erstverschreibung Verhütungspille nach Beratungsgespräch, gynäkologische Untersuchung nur wenn empfehlenswert.</p>
 
-<strong>Operative Eingriffe</strong>  
-<p>Kleinere ambulante Eingriffe in unserer Praxis.</p>
+<div class="image-container center"><img src="images/iud.jpg" alt="iud" loading="lazy" style="width: 40%; max-width: 100%;"></div>
 
-<strong>Zusammenarbeit</strong>  
-<p>Enge Kooperation mit Spezialisten und Kliniken der Region.</p>
+
+<br>
+<h2>Operationen</h2>
+
+<p>Als Belegarzt im Spitalzentrum Biel (stationär, mit Übernachtung) und im Medin-Au-lac (ambulant, gleichentags wieder nach Hause).</p>
+
+<h3>Laparoskopie (Bauchspiegelung) </h3>
+<p>Mit nur 3-4 kleinen Löchern im Bauch können einfache und komplexe Operationen erfolgen.</p>
+
+<h3>Hysterektomie per Laparoskopie (Gebärmutter-Entfernung) (stationär) </h3>
+<p>Die klassische Operation z.B. bei Myomen und starken Blutungen, wenn andere Methoden versagen.</p>
+
+<h3>Hysteroskopie (Gebärmutterspiegelung)</h3>
+<p>Eine moderne, minimal-invasive Methode, um das Innere der Gebärmutter zu beurteilen und auch Polypen oder kleinere Myome zu entfernen.</p>
+
+<h3>Endometrium-Resektion per Hysteroskopie (Gebärmutter-Schleimhaut entfernen mit Gebärmutterspiegelung) (ambulant) </h3>
+<p>Bei starken Mensblutungen kann dieser minimal-invasive Eingriff deutlich die Blutungen reduzieren.</p>
+
+<br>
+
+<h2>Zusammenarbeit und Zuweisungen</h2>
+
+<ul>
+<li>Spitalzentrum Biel: Gynäkologie, Brustzentrum, Beckenbodenzentrum (Dr. J. Mathis, Dr. C. Eggemann)</li>
+<li>Spitalzentrum Biel: Radiologie, Chirurgie, Physiotherapie</li>
+<li>EndoDia am Bahnhof: Endokrinologie, Diabetes (Dr. S. Fatio, Dr. S. Bervini)</li>
+<li>Zentrum für sexuelle Gesundheit (Dr. S. Décaillet)</li>
+<li>Kinderwunschzentrum Biel (Dr. S. Crazzolara)</li>
+<li>ESPACE Chirurgie (Dr. A. Witschi, Dr. C. Buser)</li>
+<li>Frauengesundheit Burgernziel Bern (Dr. B. Fellmann)</li>
+<li>Viollier Labor Biel / Allschwil</li>
+<li>Kinderarzt-Praxis im MZB (Dr. U. Schneider)"</li>
+</ul>
+
+
+<br>
 </div>
 <div class="lang-content " data-lang="en">
-<h1>Our Services</h1>
+<h2>Our Services</h2>
 
-<strong>Pregnancy</strong>
+<h3>Pregnancy</h3>
+<p>We accompany you throughout your entire pregnancy until the due date.</p>
 
-<p>We provide comprehensive care throughout your pregnancy.</p>
+<h3>Pregnancy Check-ups</h3>
+<p>A check-up is recommended approximately every 4 weeks.</p>
+<p>For high-risk pregnancies or emergencies, flexible and frequent check-ups are available.</p>
+<p>Blood tests, urine analysis, blood pressure measurement, weight monitoring.</p>
+<p>Testing of iron reserves, administration of iron infusions.</p>
+<p>Coordination with your midwife.</p>
 
-<strong>External Midwives:</strong>
+
+
+<div class="image-container center"><img src="images/3d.jpg" alt="3d" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+
+
+
+
+<div class="clearfix"></div><h3>Ultrasound Examinations</h3>
 <ul>
-<li>Midwife Anna Müller</li>
-<li>Midwife Barbara Schmidt</li>
-<li>Midwife Christina Weber</li>
-<li>Midwife Diana Fischer</li>
+<li>Early ultrasound (7-8 weeks)</li>
+<li>First trimester screening (12-14 weeks)</li>
+<li>Organ screening, heart (20-24 weeks)</li>
+<li>Growth control (30-32 weeks)</li>
+<li>3D/4D Ultrasound</li>
 </ul>
 
-<strong>Prenatal Care</strong>  
-<p>Regular check-ups according to maternity guidelines to monitor your and your baby's health.</p>
 
-<strong>Nutritional Counseling</strong>  
-<p>Individual consultation for healthy nutrition during pregnancy.</p>
 
-<strong>Ultrasound Examinations</strong>
+<h3>Nutritional Counseling  </h3>
+<p>Individual counseling for healthy nutrition during pregnancy.</p>
+
+
+<h3>Vaccinations  </h3>
+<p>Counseling on recommended vaccinations during pregnancy.</p>
+<p>(Whooping cough booster, flu, ...)</p>
+
+<h3>Birth support by midwives and hospital</h3>
 <ul>
-<li>Early ultrasound (week 8)</li>
-<li>First trimester screening (week 12)</li>
-<li>Organ screening (week 20)</li>
+<li>Midwives Delivery Room Spitalzentrum Biel</li>
+<li>Midwife Practice Biel-Bienne (Elena Käser, Sabina Schöni, Karin Lüthi, Sara Stoll)</li>
+<li>Midwife Ursula Schüpbach, Biel, Home births</li>
+<li>Midwife Monika Gfeller, Biel, Home births</li>
+<li>Planned cesarean sections at Spitalzentrum Biel as attending physician</li>
 </ul>
 
-<strong>Vaccinations</strong>  
-<p>Consultation and administration of all recommended vaccinations during pregnancy.</p>
 
-<strong>Birth Support</strong>  
-<p>Collaboration with the birth clinic of your choice.</p>
+<div class="image-container center"><img src="images/anat.jpg" alt="anat" loading="lazy" style="width: 70%; max-width: 100%;"></div>
 
-<hr>
+<div class="clearfix"></div><h2>Gynecology</h2>
 
-<strong>Gynecology</strong>
+<p>Comprehensive gynecological care for all life phases.</p>
 
-<p>Comprehensive gynecological care for all life stages.</p>
+<h3>Annual Check-ups  </h3>
+<p>PAP smears every 1-3 years</p>
+<p>Breast examination and self-examination instruction</p>
+<p>Vaginal flora and intimate hygiene</p>
+<p>Ultrasound (monitoring fibroids, cysts)</p>
 
-<strong>Annual Check-ups</strong>  
-<p>Annual preventive examinations including cancer screening.</p>
+<h3>Emergency Consultation  </h3>
+<p>We are here for you with acute complaints, by phone or through short-notice emergency appointments.</p>
 
-<strong>Emergency Consultation</strong>  
-<p>We are here for you in case of acute complaints.</p>
 
-<strong>Contraception Counseling</strong>  
-<p>Individual consultation on all modern contraceptive methods.</p>
+<h3>Contraception Counseling  </h3>
+<p>Counseling on all modern contraceptive methods.</p>
+<p>From the pill to the copper IUD to surgical tubal ligation.</p>
+<p>First prescription of birth control pills after consultation, gynecological examination only if recommended.</p>
 
-<strong>Ultrasound Diagnostics</strong>  
-<p>State-of-the-art ultrasound technology for precise diagnostics.</p>
+<div class="image-container center"><img src="images/iud.jpg" alt="iud" loading="lazy" style="width: 40%; max-width: 100%;"></div>
 
-<strong>Surgical Procedures</strong>  
-<p>Minor outpatient procedures in our practice.</p>
 
-<strong>Collaboration</strong>  
-<p>Close cooperation with specialists and clinics in the region.</p>
+<br>
+<h2>Operations</h2>
+
+<p>As attending physician at Spitalzentrum Biel (inpatient, with overnight stay) and at Medin-Au-lac (outpatient, same day discharge).</p>
+
+<h3>Laparoscopy (Abdominal Endoscopy) </h3>
+<p>Simple and complex operations can be performed with only 3-4 small incisions in the abdomen.</p>
+
+<h3>Laparoscopic Hysterectomy (Uterus Removal) (inpatient) </h3>
+<p>The classic operation for fibroids and heavy bleeding when other methods fail.</p>
+
+<h3>Hysteroscopy (Uterine Endoscopy)</h3>
+<p>A modern, minimally invasive method to assess the inside of the uterus and also remove polyps or smaller fibroids.</p>
+
+<h3>Endometrial Resection by Hysteroscopy (Endometrial Ablation by Uterine Endoscopy) (outpatient) </h3>
+<p>For heavy menstrual bleeding, this minimally invasive procedure can significantly reduce bleeding.</p>
+
+<br>
+
+<h2>Collaboration and Referrals</h2>
+
+
+<ul>
+<li>Spitalzentrum Biel: Gynecology, Breast Center, Pelvic Floor Center (Dr. J. Mathis, Dr. C. Eggemann)</li>
+<li>Spitalzentrum Biel: Radiology, Surgery, Physiotherapy</li>
+<li>EndoDia near train station: Endocrinology, Diabetes (Dr. S. Fatio, Dr. S. Bervini)</li>
+<li>Centre for Sexual Health (Dr. S. Décaillet)</li>
+<li>Fertility Center Biel (Dr. S. Crazzolara)</li>
+<li>ESPACE Surgery (Dr. A. Witschi, Dr. C. Buser)</li>
+<li>Gynecology Burgernziel Bern (Dr. B. Fellmann)</li>
+<li>Viollier Laboratory Biel / Allschwil</li>
+<li>Pediatric Practice at MZB (Dr. U. Schneider)</li>
+</ul>
+
+<br>
 </div>
 <div class="lang-content " data-lang="fr">
-<h1>Nos Services</h1>
+<h2>Nos services</h2>
 
-<strong>Grossesse</strong>
+<h3>Grossesse</h3>
+<p>Nous vous accompagnons tout au long de votre grossesse jusqu'au terme.</p>
 
-<p>Nous vous accompagnons tout au long de votre grossesse avec des soins complets.</p>
+<h3>Contrôles de grossesse</h3>
+<p>Un contrôle est recommandé environ toutes les 4 semaines.</p>
+<p>Pour les grossesses à risque ou en cas d'urgence, des contrôles flexibles et fréquents sont disponibles.</p>
+<p>Prises de sang, analyse d'urine, mesure de la tension artérielle, suivi du poids.</p>
+<p>Test des réserves en fer, administration de perfusions de fer.</p>
+<p>Coordination avec votre sage-femme</p>
 
-<strong>Sages-femmes externes:</strong>
+
+
+<div class="image-container center"><img src="images/3d.jpg" alt="3d" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+
+
+
+
+<div class="clearfix"></div><h3>Examens échographiques</h3>
 <ul>
-<li>Sage-femme Anna Müller</li>
-<li>Sage-femme Barbara Schmidt</li>
-<li>Sage-femme Christina Weber</li>
-<li>Sage-femme Diana Fischer</li>
+<li>Échographie précoce (7-8 semaines)</li>
+<li>Dépistage du premier trimestre (12-14 semaines)</li>
+<li>Dépistage des organes, cœur (20-24 semaines)</li>
+<li>Contrôle de croissance (30-32 semaines)</li>
+<li>Échographie 3D/4D</li>
 </ul>
 
-<strong>Contrôles de grossesse</strong>  
-<p>Examens réguliers selon les directives de maternité pour surveiller votre santé et celle de votre bébé.</p>
 
-<strong>Conseil nutritionnel</strong>  
-<p>Consultation individuelle pour une alimentation saine pendant la grossesse.</p>
 
-<strong>Examens échographiques</strong>
+<h3>Conseil nutritionnel  </h3>
+<p>Conseil individuel pour une alimentation saine pendant la grossesse.</p>
+
+
+<h3>Vaccinations  </h3>
+<p>Conseil sur les vaccinations recommandées pendant la grossesse.</p>
+<p>(Rappel coqueluche, grippe, ...)</p>
+
+<h3>Accompagnement de l'accouchement par les sages-femmes et l'hôpital</h3>
 <ul>
-<li>Échographie précoce (8e semaine)</li>
-<li>Dépistage du premier trimestre (12e semaine)</li>
-<li>Échographie morphologique (20e semaine)</li>
+<li>Sages-femmes Salle d'accouchement Spitalzentrum Biel</li>
+<li>Cabinet de sages-femmes Biel-Bienne (Elena Käser, Sabina Schöni, Karin Lüthi, Sara Stoll)</li>
+<li>Sage-femme Ursula Schüpbach, Biel, Accouchements à domicile</li>
+<li>Sage-femme Monika Gfeller, Biel, Accouchements à domicile</li>
+<li>Césariennes planifiées au Spitalzentrum Biel en tant que médecin agréé</li>
 </ul>
 
-<strong>Vaccinations</strong>  
-<p>Conseil et administration de toutes les vaccinations recommandées pendant la grossesse.</p>
 
-<strong>Accompagnement à l'accouchement</strong>  
-<p>Collaboration avec la maternité de votre choix.</p>
+<div class="image-container center"><img src="images/anat.jpg" alt="anat" loading="lazy" style="width: 70%; max-width: 100%;"></div>
 
-<hr>
+<div class="clearfix"></div><h2>Gynécologie</h2>
 
-<strong>Gynécologie</strong>
+<p>Prise en charge gynécologique complète pour toutes les phases de la vie.</p>
 
-<p>Soins gynécologiques complets pour toutes les étapes de la vie.</p>
+<h3>Contrôles annuels  </h3>
+<p>Frottis PAP tous les 1-3 ans</p>
+<p>Examen des seins et instruction pour l'auto-palpation</p>
+<p>Flore vaginale et hygiène intime</p>
+<p>Échographie (contrôle des fibromes, kystes)</p>
 
-<strong>Contrôles annuels</strong>  
-<p>Examens préventifs annuels incluant le dépistage du cancer.</p>
+<h3>Consultation d'urgence  </h3>
+<p>Nous sommes là pour vous en cas de troubles aigus, par téléphone ou par des rendez-vous d'urgence à court terme.</p>
 
-<strong>Consultation d'urgence</strong>  
-<p>Nous sommes là pour vous en cas de troubles aigus.</p>
 
-<strong>Conseil en contraception</strong>  
-<p>Consultation individuelle sur toutes les méthodes contraceptives modernes.</p>
+<h3>Conseil en contraception  </h3>
+<p>Conseil sur toutes les méthodes contraceptives modernes.</p>
+<p>De la pilule au stérilet au cuivre jusqu'à la ligature des trompes chirurgicale.</p>
+<p>Première prescription de pilule contraceptive après entretien conseil, examen gynécologique seulement si recommandé.</p>
 
-<strong>Diagnostic par ultrasons</strong>  
-<p>Technologie ultrasonore de pointe pour un diagnostic précis.</p>
+<div class="image-container center"><img src="images/iud.jpg" alt="iud" loading="lazy" style="width: 40%; max-width: 100%;"></div>
 
-<strong>Interventions chirurgicales</strong>  
-<p>Petites interventions ambulatoires dans notre cabinet.</p>
 
-<strong>Collaboration</strong>  
-<p>Coopération étroite avec les spécialistes et cliniques de la région.</p>
+<br>
+<h2>Opérations</h2>
+
+<p>En tant que médecin agréé au Spitalzentrum Biel (stationnaire, avec nuitée) et au Medin-Au-lac (ambulatoire, retour à domicile le jour même).</p>
+
+<h3>Laparoscopie (Cœlioscopie) </h3>
+<p>Des opérations simples et complexes peuvent être effectuées avec seulement 3-4 petites incisions dans l'abdomen.</p>
+
+<h3>Hystérectomie par laparoscopie (Ablation de l'utérus) (stationnaire) </h3>
+<p>L'opération classique par exemple pour les fibromes et les saignements importants, lorsque les autres méthodes échouent.</p>
+
+<h3>Hystéroscopie (Endoscopie utérine)</h3>
+<p>Une méthode moderne et minimalement invasive pour évaluer l'intérieur de l'utérus et également retirer des polypes ou de petits fibromes.</p>
+
+<h3>Résection de l'endomètre par hystéroscopie (Ablation de l'endomètre par endoscopie utérine) (ambulatoire) </h3>
+<p>Pour les saignements menstruels abondants, cette intervention minimalement invasive peut réduire considérablement les saignements.</p>
+
+<br>
+
+<h2>Collaboration et références</h2>
+
+
+<ul>
+<li>Spitalzentrum Biel: Gynécologie, Centre du sein, Centre du plancher pelvien (Dr. J. Mathis, Dr. C. Eggemann)</li>
+<li>Spitalzentrum Biel: Radiologie, Chirurgie, Physiothérapie</li>
+<li>EndoDia Gare de Bienne: Endocrinologie, Diabète (Dr. S. Fatio, Dr. S. Bervini)</li>
+<li>Centre de santé sexuelle (Dr. S. Décaillet)</li>
+<li>Centre de fertilité Biel (Dr. S. Crazzolara)</li>
+<li>ESPACE Chirurgie (Dr. A. Witschi, Dr. C. Buser)</li>
+<li>Gynécologie Burgernziel Bern (Dr. B. Fellmann)</li>
+<li>Laboratoire Viollier Biel / Allschwil</li>
+<li>Cabinet de pédiatrie au MZB (Dr. U. Schneider)</li>
+</ul>
+
+<br>
 </div>
 <div class="lang-content " data-lang="es">
-<h1>Nuestros Servicios</h1>
+<h2>Nuestros servicios</h2>
 
-<strong>Embarazo</strong>
+<h3>Embarazo</h3>
+<p>Te acompañamos durante todo el embarazo hasta la fecha del parto.</p>
 
-<p>Brindamos atención integral durante todo su embarazo.</p>
+<h3>Controles del embarazo</h3>
+<p>Se recomienda un control aproximadamente cada 4 semanas.</p>
+<p>Para embarazos de alto riesgo o emergencias, hay controles flexibles y frecuentes disponibles.</p>
+<p>Análisis de sangre, análisis de orina, medición de presión arterial, seguimiento del peso.</p>
+<p>Prueba de reservas de hierro, administración de infusiones de hierro.</p>
+<p>Coordinación con tu matrona</p>
 
-<strong>Parteras externas:</strong>
+
+
+<div class="image-container center"><img src="images/3d.jpg" alt="3d" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+
+
+
+
+<div class="clearfix"></div><h3>Exámenes ecográficos</h3>
 <ul>
-<li>Partera Anna Müller</li>
-<li>Partera Barbara Schmidt</li>
-<li>Partera Christina Weber</li>
-<li>Partera Diana Fischer</li>
+<li>Ecografía temprana (7-8 semanas)</li>
+<li>Cribado del primer trimestre (12-14 semanas)</li>
+<li>Cribado de órganos, corazón (20-24 semanas)</li>
+<li>Control de crecimiento (30-32 semanas)</li>
+<li>Ecografía 3D/4D</li>
 </ul>
 
-<strong>Control prenatal</strong>  
-<p>Controles regulares según las pautas de maternidad para monitorear su salud y la de su bebé.</p>
 
-<strong>Asesoramiento nutricional</strong>  
-<p>Consulta individual para una nutrición saludable durante el embarazo.</p>
 
-<strong>Exámenes de ultrasonido</strong>
+<h3>Asesoramiento nutricional  </h3>
+<p>Asesoramiento individual para una alimentación saludable durante el embarazo.</p>
+
+
+<h3>Vacunas  </h3>
+<p>Asesoramiento sobre las vacunas recomendadas durante el embarazo.</p>
+<p>(Refuerzo de tos ferina, gripe, ...)</p>
+
+<h3>Acompañamiento del parto por matronas y hospital</h3>
 <ul>
-<li>Ultrasonido temprano (semana 8)</li>
-<li>Cribado del primer trimestre (semana 12)</li>
-<li>Cribado de órganos (semana 20)</li>
+<li>Matronas Sala de partos Spitalzentrum Biel</li>
+<li>Consulta de matronas Biel-Bienne (Elena Käser, Sabina Schöni, Karin Lüthi, Sara Stoll)</li>
+<li>Matrona Ursula Schüpbach, Biel, Partos en casa</li>
+<li>Matrona Monika Gfeller, Biel, Partos en casa</li>
+<li>Cesáreas planificadas en Spitalzentrum Biel como médico asociado</li>
 </ul>
 
-<strong>Vacunaciones</strong>  
-<p>Consulta y administración de todas las vacunas recomendadas durante el embarazo.</p>
 
-<strong>Acompañamiento al parto</strong>  
-<p>Colaboración con la clínica de maternidad de su elección.</p>
+<div class="image-container center"><img src="images/anat.jpg" alt="anat" loading="lazy" style="width: 70%; max-width: 100%;"></div>
 
-<hr>
+<div class="clearfix"></div><h2>Ginecología</h2>
 
-<strong>Ginecología</strong>
+<p>Atención ginecológica integral para todas las fases de la vida.</p>
 
-<p>Atención ginecológica integral para todas las etapas de la vida.</p>
+<h3>Controles anuales  </h3>
+<p>Citologías PAP cada 1-3 años</p>
+<p>Examen de mamas e instrucción para el autoexamen</p>
+<p>Flora vaginal e higiene íntima</p>
+<p>Ecografía (control de miomas, quistes)</p>
 
-<strong>Controles anuales</strong>  
-<p>Exámenes preventivos anuales incluyendo detección de cáncer.</p>
+<h3>Consulta de urgencia  </h3>
+<p>Estamos aquí para ti con molestias agudas, por teléfono o mediante citas de emergencia a corto plazo.</p>
 
-<strong>Consulta de emergencia</strong>  
-<p>Estamos aquí para usted en caso de molestias agudas.</p>
 
-<strong>Asesoramiento anticonceptivo</strong>  
-<p>Consulta individual sobre todos los métodos anticonceptivos modernos.</p>
+<h3>Asesoramiento anticonceptivo  </h3>
+<p>Asesoramiento sobre todos los métodos anticonceptivos modernos.</p>
+<p>Desde la píldora hasta el DIU de cobre hasta la ligadura de trompas quirúrgica.</p>
+<p>Primera prescripción de píldoras anticonceptivas después de consulta de asesoramiento, examen ginecológico solo si es recomendable.</p>
 
-<strong>Diagnóstico por ultrasonido</strong>  
-<p>Tecnología de ultrasonido de última generación para diagnósticos precisos.</p>
+<div class="image-container center"><img src="images/iud.jpg" alt="iud" loading="lazy" style="width: 40%; max-width: 100%;"></div>
 
-<strong>Procedimientos quirúrgicos</strong>  
-<p>Procedimientos ambulatorios menores en nuestra consulta.</p>
 
-<strong>Colaboración</strong>  
-<p>Estrecha cooperación con especialistas y clínicas de la región.</p>
+<br>
+<h2>Operaciones</h2>
+
+<p>Como médico asociado en Spitalzentrum Biel (hospitalario, con estancia nocturna) y en Medin-Au-lac (ambulatorio, alta el mismo día).</p>
+
+<h3>Laparoscopia (Endoscopia abdominal) </h3>
+<p>Se pueden realizar operaciones simples y complejas con solo 3-4 pequeñas incisiones en el abdomen.</p>
+
+<h3>Histerectomía por laparoscopia (Extirpación del útero) (hospitalario) </h3>
+<p>La operación clásica por ejemplo para miomas y sangrados abundantes cuando otros métodos fallan.</p>
+
+<h3>Histeroscopia (Endoscopia uterina)</h3>
+<p>Un método moderno y mínimamente invasivo para evaluar el interior del útero y también eliminar pólipos o miomas pequeños.</p>
+
+<h3>Resección endometrial por histeroscopia (Ablación endometrial por endoscopia uterina) (ambulatorio) </h3>
+<p>Para sangrados menstruales abundantes, este procedimiento mínimamente invasivo puede reducir significativamente el sangrado.</p>
+
+<br>
+
+<h2>Colaboración y derivaciones</h2>
+
+
+<ul>
+<li>Spitalzentrum Biel: Ginecología, Centro de mama, Centro de suelo pélvico (Dr. J. Mathis, Dr. C. Eggemann)</li>
+<li>Spitalzentrum Biel: Radiología, Cirugía, Fisioterapia</li>
+<li>EndoDia am Bahnhof: Endocrinología, Diabetes (Dr. S. Fatio, Dr. S. Bervini)</li>
+<li>Centro de salud sexual (Dr. S. Décaillet)</li>
+<li>Centro de fertilidad Biel (Dr. S. Crazzolara)</li>
+<li>ESPACE Cirugía (Dr. A. Witschi, Dr. C. Buser)</li>
+<li>Ginecología Burgernziel Bern (Dr. B. Fellmann)</li>
+<li>Laboratorio Viollier Biel / Allschwil</li>
+<li>Consulta pediátrica en MZB (Dr. U. Schneider)</li>
+</ul>
+
+
+<br>
 </div>
 </section>
 <section id="team">
 <div class="lang-content active" data-lang="de">
-<h1>Unser Team</h1>
+<h2>Unser Team</h2>
 
-<img src="images/doctor.jpg" alt="Dr. ABC DEF">
-<strong>Dr. med. ABC DEF</strong>  
-<p>Fachärztin für Gynäkologie und Geburtshilfe FMH</p>
+<div class="image-container center"><img src="images/ro.jpg" alt="ro" loading="lazy" style="width: 40%; max-width: 100%;"></div>
 
-<img src="images/assistant1.jpg" alt="Maria Schmidt">
-<strong>Maria Schmidt</strong>  
-<p>Medizinische Praxisassistentin</p>
+<div class="clearfix"></div><h3>Dr. med. Robert Oehler</h3>
+<p>Frauenarzt</p>
 
-<img src="images/assistant2.jpg" alt="Laura Weber">
-<strong>Laura Weber</strong>  
+<div class="image-container center"><img src="images/ms.jpg" alt="ms" loading="lazy" style="width: 40%; max-width: 100%;"></div>
+
+
+<div class="clearfix"></div><h3>Marianna Scorza</h3>
 <p>Medizinische Praxisassistentin</p>
 </div>
 <div class="lang-content " data-lang="en">
-<h1>Our Team</h1>
+<h2>Our Team</h2>
 
-<img src="images/doctor.jpg" alt="Dr. ABC DEF">
-<strong>Dr. med. ABC DEF</strong>  
-<p>Specialist in Gynecology and Obstetrics FMH</p>
+<div class="image-container center"><img src="images/ro.jpg" alt="ro" loading="lazy" style="width: 40%; max-width: 100%;"></div>
 
-<img src="images/assistant1.jpg" alt="Maria Schmidt">
-<strong>Maria Schmidt</strong>  
-<p>Medical Practice Assistant</p>
+<div class="clearfix"></div><h3>Robert Oehler, MD</h3>
+<p>Gynecologist</p>
 
-<img src="images/assistant2.jpg" alt="Laura Weber">
-<strong>Laura Weber</strong>  
+<div class="image-container center"><img src="images/ms.jpg" alt="ms" loading="lazy" style="width: 40%; max-width: 100%;"></div>
+
+
+<div class="clearfix"></div><h3>Marianna Scorza</h3>
 <p>Medical Practice Assistant</p>
 </div>
 <div class="lang-content " data-lang="fr">
-<h1>Notre Équipe</h1>
+<h2>Notre équipe</h2>
 
-<img src="images/doctor.jpg" alt="Dr. ABC DEF">
-<strong>Dr. med. ABC DEF</strong>  
-<p>Spécialiste en Gynécologie et Obstétrique FMH</p>
+<div class="image-container center"><img src="images/ro.jpg" alt="ro" loading="lazy" style="width: 40%; max-width: 100%;"></div>
 
-<img src="images/assistant1.jpg" alt="Maria Schmidt">
-<strong>Maria Schmidt</strong>  
-<p>Assistante médicale</p>
+<div class="clearfix"></div><h3>Dr méd. Robert Oehler</h3>
+<p>Gynécologue</p>
 
-<img src="images/assistant2.jpg" alt="Laura Weber">
-<strong>Laura Weber</strong>  
+<div class="image-container center"><img src="images/ms.jpg" alt="ms" loading="lazy" style="width: 40%; max-width: 100%;"></div>
+
+
+<div class="clearfix"></div><h3>Marianna Scorza</h3>
 <p>Assistante médicale</p>
 </div>
 <div class="lang-content " data-lang="es">
-<h1>Nuestro Equipo</h1>
+<h2>Nuestro equipo</h2>
 
-<img src="images/doctor.jpg" alt="Dr. ABC DEF">
-<strong>Dr. med. ABC DEF</strong>  
-<p>Especialista en Ginecología y Obstetricia FMH</p>
+<div class="image-container center"><img src="images/ro.jpg" alt="ro" loading="lazy" style="width: 40%; max-width: 100%;"></div>
 
-<img src="images/assistant1.jpg" alt="Maria Schmidt">
-<strong>Maria Schmidt</strong>  
-<p>Asistente médica</p>
+<div class="clearfix"></div><h3>Dr. Robert Oehler</h3>
+<p>Ginecólogo</p>
 
-<img src="images/assistant2.jpg" alt="Laura Weber">
-<strong>Laura Weber</strong>  
+<div class="image-container center"><img src="images/ms.jpg" alt="ms" loading="lazy" style="width: 40%; max-width: 100%;"></div>
+
+
+<div class="clearfix"></div><h3>Marianna Scorza</h3>
 <p>Asistente médica</p>
 </div>
 </section>
 <section id="links">
 <div class="lang-content active" data-lang="de">
-<h1>Nützliche Links</h1>
+<h1>Externe Links</h1>
 
 <ul>
-<li><a href="https://www.sggg.ch">Schweizerische Gesellschaft für Gynäkologie und Geburtshilfe</a></li>
-<li><a href="https://www.usz.ch">Universitätsspital Zürich</a></li>
-<li><a href="https://www.lalecheleague.ch">La Leche League Schweiz</a></li>
+<li><a href="https://youtube.com/laparoedu">YOUTUBE - LaparoEdu</a></li>
 </ul>
 </div>
 <div class="lang-content " data-lang="en">
-<h1>Useful Links</h1>
+<h1>External Links</h1>
 
 <ul>
-<li><a href="https://www.sggg.ch">Swiss Society of Gynecology and Obstetrics</a></li>
-<li><a href="https://www.usz.ch">University Hospital Zurich</a></li>
-<li><a href="https://www.lalecheleague.ch">La Leche League Switzerland</a></li>
+<li><a href="https://youtube.com/laparoedu">YOUTUBE - LaparoEdu</a></li>
 </ul>
 </div>
 <div class="lang-content " data-lang="fr">
-<h1>Liens Utiles</h1>
+<h1>Liens externes</h1>
 
 <ul>
-<li><a href="https://www.sggg.ch">Société Suisse de Gynécologie et Obstétrique</a></li>
-<li><a href="https://www.usz.ch">Hôpital Universitaire de Zurich</a></li>
-<li><a href="https://www.lalecheleague.ch">La Leche League Suisse</a></li>
+<li><a href="https://youtube.com/laparoedu">YOUTUBE - LaparoEdu</a></li>
 </ul>
 </div>
 <div class="lang-content " data-lang="es">
-<h1>Enlaces Útiles</h1>
+<h1>Enlaces externos</h1>
 
 <ul>
-<li><a href="https://www.sggg.ch">Sociedad Suiza de Ginecología y Obstetricia</a></li>
-<li><a href="https://www.usz.ch">Hospital Universitario de Zúrich</a></li>
-<li><a href="https://www.lalecheleague.ch">La Liga de la Leche Suiza</a></li>
+<li><a href="https://youtube.com/laparoedu">YOUTUBE - LaparoEdu</a></li>
 </ul>
 </div>
 </section>
 <section id="gallery">
 <div class="lang-content active" data-lang="de">
+<h1>Galerie</h1>
 
+
+<div class="image-container center"><img src="images/ecke.jpg" alt="ecke" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+
+<div class="image-container center"><img src="images/bhf.jpg" alt="bhf" loading="lazy" style="width: 90%; max-width: 100%;"></div>
+
+<div class="image-container center"><img src="images/embryo.jpg" alt="embryo" loading="lazy" style="width: 70%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="en">
+<h1>Gallery</h1>
 
+
+<div class="image-container center"><img src="images/ecke.jpg" alt="ecke" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+
+<div class="image-container center"><img src="images/bhf.jpg" alt="bhf" loading="lazy" style="width: 90%; max-width: 100%;"></div>
+
+<div class="image-container center"><img src="images/embryo.jpg" alt="embryo" loading="lazy" style="width: 70%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="fr">
+<h1>Galerie</h1>
 
+
+<div class="image-container center"><img src="images/ecke.jpg" alt="ecke" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+
+<div class="image-container center"><img src="images/bhf.jpg" alt="bhf" loading="lazy" style="width: 90%; max-width: 100%;"></div>
+
+<div class="image-container center"><img src="images/embryo.jpg" alt="embryo" loading="lazy" style="width: 70%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="es">
+<h1>Galería</h1>
 
-</div>
-</section>
-<section id="impressum">
-<div class="lang-content active" data-lang="de">
-<h1>Impressum</h1>
 
-<strong>Praxis Dr. ABC DEF</strong>  
-<p>Hauptstraße 123  </p>
-<p>12345 Stadt  </p>
-<p>Schweiz</p>
+<div class="image-container center"><img src="images/ecke.jpg" alt="ecke" loading="lazy" style="width: 70%; max-width: 100%;"></div>
 
-<strong>Telefon:</strong> +49 123 456789  
-<strong>E-Mail:</strong> info@praxis-def.ch
+<div class="image-container center"><img src="images/bhf.jpg" alt="bhf" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 
-<strong>Berufsbezeichnung:</strong> Fachärztin für Gynäkologie und Geburtshilfe FMH
-
-<strong>Haftungsausschluss</strong>  
-<p>Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
-</div>
-<div class="lang-content " data-lang="en">
-<h1>Legal Notice</h1>
-
-<strong>Practice Dr. ABC DEF</strong>  
-<p>Main Street 123  </p>
-<p>12345 City  </p>
-<p>Switzerland</p>
-
-<strong>Phone:</strong> +49 123 456789  
-<strong>Email:</strong> info@praxis-def.ch
-
-<strong>Professional Title:</strong> Specialist in Gynecology and Obstetrics FMH
-
-<strong>Disclaimer</strong>  
-<p>Despite careful content control, we assume no liability for the content of external links. The operators of the linked pages are exclusively responsible for their content.</p>
-</div>
-<div class="lang-content " data-lang="fr">
-<h1>Mentions Légales</h1>
-
-<strong>Cabinet Dr. ABC DEF</strong>  
-<p>123 Rue Principale  </p>
-<p>12345 Ville  </p>
-<p>Suisse</p>
-
-<strong>Téléphone:</strong> +49 123 456789  
-<strong>E-mail:</strong> info@praxis-def.ch
-
-<strong>Titre professionnel:</strong> Spécialiste en Gynécologie et Obstétrique FMH
-
-<strong>Clause de non-responsabilité</strong>  
-<p>Malgré un contrôle minutieux du contenu, nous déclinons toute responsabilité pour le contenu des liens externes. Les exploitants des pages liées sont exclusivement responsables de leur contenu.</p>
-</div>
-<div class="lang-content " data-lang="es">
-<h1>Aviso Legal</h1>
-
-<strong>Consulta Dr. ABC DEF</strong>  
-<p>Calle Principal 123  </p>
-<p>12345 Ciudad  </p>
-<p>Suiza</p>
-
-<strong>Teléfono:</strong> +49 123 456789  
-<strong>Correo:</strong> info@praxis-def.ch
-
-<strong>Título profesional:</strong> Especialista en Ginecología y Obstetricia FMH
-
-<strong>Descargo de responsabilidad</strong>  
-<p>A pesar del cuidadoso control del contenido, no asumimos ninguna responsabilidad por el contenido de los enlaces externos. Los operadores de las páginas enlazadas son exclusivamente responsables de su contenido.</p>
+<div class="image-container center"><img src="images/embryo.jpg" alt="embryo" loading="lazy" style="width: 70%; max-width: 100%;"></div>
 </div>
 </section></main>
     <script>
+        let isDark = true;
+        
+        const themes = {
+            light: {"bg_main": "#ffffff", "bg_alt": "#f5f5f5", "bg_nav": "#f0f0f0", "text_primary": "#333333", "text_secondary": "#666666", "accent": "#5dade2", "accent_hover": "#4a90e2", "border": "#ddd", "menu_hover": "#f5f5f5"},
+            dark: {"bg_main": "#1a1a1a", "bg_alt": "#2d2d2d", "bg_nav": "#222222", "text_primary": "#f0f0f0", "text_secondary": "#b0b0b0", "accent": "#5dade2", "accent_hover": "#74b9ff", "border": "#444", "menu_hover": "#2d2d2d"}
+        };
+        
+        function applyTheme(themeName) {
+            const theme = themes[themeName];
+            const root = document.documentElement;
+            Object.keys(theme).forEach(key => {
+                root.style.setProperty(`--${key.replace(/_/g, '-')}`, theme[key]);
+            });
+            document.getElementById('theme-btn').textContent = themeName === 'dark' ? '☀️' : '🌙';
+        }
+        
+        function toggleTheme() {
+            isDark = !isDark;
+            applyTheme(isDark ? 'dark' : 'light');
+        }
+        
         function setLang(lang) {
             document.querySelectorAll('.lang-btns button').forEach(b => 
                 b.classList.toggle('active', b.dataset.lang === lang));
@@ -650,13 +1134,30 @@
                 el.classList.toggle('active', el.dataset.lang === lang));
             document.documentElement.lang = lang;
         }
+        
         function toggleMenu() {
             const menu = document.getElementById('menu');
             menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
         }
+        
         document.addEventListener('click', e => {
             if (!e.target.closest('nav')) document.getElementById('menu').style.display = 'none';
         });
+        
+        // Initialize with dark theme
+        applyTheme('dark');
+        
+        
+        // Prevent double-tap zoom on iOS
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
     </script>
 </body>
 </html>
