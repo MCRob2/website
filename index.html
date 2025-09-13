@@ -7,10 +7,11 @@
     <title>Website</title>
     <style>
         :root {
-            --bg-main: #1a1a1a;
+            --bg-main: #101010;
             --bg-alt: #2d2d2d;
             --bg-nav: #222222;
-            --text-primary: #f0f0f0;
+            --bg-section: #303030;
+            --text-primary: #f3f3f3;
             --text-secondary: #b0b0b0;
             --accent: #5dade2;
             --accent-hover: #74b9ff;
@@ -110,11 +111,13 @@
             padding: 12px 0 12px 10px; 
         }
         
-        main { margin-top: 40px; }
+        main { margin-top: 50px; }
         section { 
             max-width: 900px; 
-            margin: 0 auto; 
-            padding: 5px 10px;  
+            margin: 0 auto 15px auto; 
+            padding: 5px 10px;
+            background: var(--bg-section);
+            border-radius: 12px;
         }
 
         h1 { 
@@ -177,6 +180,9 @@
             font-family: "Courier New", Courier, monospace; 
             display: block;
             margin: 5px 0 5px 0; 
+            padding: 5px;
+            background: var(--bg-section);
+            border-radius: 5px;
             line-height: 1.5; 
             white-space: pre-wrap;
             font-weight: bold; 
@@ -201,7 +207,10 @@
         @media (max-width: 768px) {
             h1 { font-size: 2em; }
             h2 { font-size: 1.5em; }
-            section { padding: 5px 10px; }
+            section { 
+                padding: 5px 10px; 
+                margin: 0 5px 20px 5px; 
+            }
             .nav-content { padding: 0 10px; }
             .menu-content { padding: 0 10px; }
             .nav-controls { gap: 8px; }
@@ -238,25 +247,13 @@
     <div id="menu">
         <div class="menu-content"><a href="#kontakt" data-de="Kontakt" data-fr="Contact" data-en="Contact" data-es="Contacto">Kontakt</a>
 <a href="#sprechzeiten" data-de="Sprechzeiten" data-fr="Heures de consultation" data-en="Office Hours" data-es="Horario de consulta">Sprechzeiten</a>
-<a href="#angebot" data-de="Angebot" data-fr="Services" data-en="Services" data-es="Servicios">Angebot</a>
+<a href="#angebot_ob" data-de="Schwangerschaft" data-fr="Grossesse" data-en="Pregnancy" data-es="Embarazo">Schwangerschaft</a>
+<a href="#angebot_gyn" data-de="Gynäkologie" data-fr="Gynécologie" data-en="Gynecology" data-es="Ginecología">Gynäkologie</a>
+<a href="#angebot_ops" data-de="Operationen" data-fr="Opérations" data-en="Operations" data-es="Operaciones">Operationen</a>
 <a href="#team" data-de="Team" data-fr="Équipe" data-en="Team" data-es="Equipo">Team</a>
-<a href="impressum.html" data-de="Impressum" data-fr="Mentions légales" data-en="Legal Notice" data-es="Aviso legal">Impressum</a></div>
+<a href="impressum.html" data-de="Impressum" data-fr="Impressum" data-en="Impressum" data-es="Impressum">Impressum</a></div>
     </div>
-    <main><section id="home">
-<div class="lang-content active" data-lang="de">
-
-</div>
-<div class="lang-content " data-lang="fr">
-
-</div>
-<div class="lang-content " data-lang="en">
-
-</div>
-<div class="lang-content " data-lang="es">
-
-</div>
-</section>
-<section id="kontakt">
+    <main><section id="kontakt">
 <div class="lang-content active" data-lang="de">
 <div style="text-align: center;">
 
@@ -272,63 +269,53 @@
 <p>Medizinisches Zentrum Biel</p>
 <p>2502 Biel</p>
 
-<h3>Tel 032 344 46 40</h3>
+<h3><strong>032 344 46 40</strong></h3>
 
 <p style='text-align: center;'><a href='tel:+41323444640' class='button'>Jetzt anrufen</a></p>
 
-<br>
 
+<strong>Sprachen in der Sprechstunde</strong>
 <p>deutsch</p>
 <p>français</p>
 <p>english</p>
 <p>español</p>
 
-<br>
-
 </div>
-
-
-<div class="image-container center"><img src="images/eingang.jpg" alt="eingang" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="fr">
 <div style="text-align: center;">
 
 <h2>Dr méd. Robert Oehler</h2>
 <h3>Cabinet de gynéco à Bienne</h3>
-<p>FMH Spécialiste Gynécologie et Obstétrique</p>
+<p>FMH Gynécologie et Obstétrique</p>
 <p>Échographie de grossesse</p>
 <p>Opérations, ambulatoires et stationnaires</p>
 
 <br>
 
 <p>Rue de l'Union 14</p>
-<p>Centre Medical Bienne</p>
+<p>Centre Médical Bienne</p>
 <p>2502 Bienne</p>
 
-<h3>Tel 032 344 46 40</h3>
+<h3><strong>032 344 46 40</strong></h3>
 
 <p style='text-align: center;'><a href='tel:+41323444640' class='button'>Appeler maintenant</a></p>
 
-<br>
 
-<p>deutsch</p>
+<strong>Langues en consultation</strong>
 <p>français</p>
+<p>deutsch</p>
 <p>english</p>
 <p>español</p>
 
-<br>
-
 </div>
-
-
-<div class="image-container center"><img src="images/eingang.jpg" alt="eingang" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="en">
 <div style="text-align: center;">
 
 <h2>Robert Oehler, MD</h2>
 <h3>OB/GYN Practice in Biel</h3>
-<p>FMH Specialist in Obstetrics and Gynecology</p>
+<p>FMH Gynecology and Obstetrics</p>
 <p>Pregnancy Ultrasound</p>
 <p>Operations, outpatient and inpatient</p>
 
@@ -338,30 +325,25 @@
 <p>Medizinisches Zentrum Biel</p>
 <p>2502 Biel</p>
 
-<h3>Tel 032 344 46 40</h3>
+<h3><strong>032 344 46 40</strong></h3>
 
 <p style='text-align: center;'><a href='tel:+41323444640' class='button'>Call now</a></p>
 
-<br>
 
+<strong>Languages in consultation</strong>
+<p>english</p>
 <p>deutsch</p>
 <p>français</p>
-<p>english</p>
 <p>español</p>
 
-<br>
-
 </div>
-
-
-<div class="image-container center"><img src="images/eingang.jpg" alt="eingang" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="es">
 <div style="text-align: center;">
 
 <h2>Dr. Robert Oehler</h2>
 <h3>Consulta Ginecología en Bienna</h3>
-<p>FMH Especialista en ginecología y obstetricia</p>
+<p>FMH Ginecología y Obstetricia</p>
 <p>Ecografía del embarazo</p>
 <p>Operaciones, ambulatorias y hospitalarias</p>
 
@@ -371,23 +353,19 @@
 <p>Medizinisches Zentrum Biel</p>
 <p>2502 Biel</p>
 
-<h3>Tel 032 344 46 40</h3>
+<h3><strong>032 344 46 40</strong></h3>
 
 <p style='text-align: center;'><a href='tel:+41323444640' class='button'>Llamar ahora</a></p>
 
-<br>
 
+<strong>Idiomas en consulta</strong>
+<p>español</p>
 <p>deutsch</p>
 <p>français</p>
 <p>english</p>
-<p>español</p>
 
-<br>
 
 </div>
-
-
-<div class="image-container center"><img src="images/eingang.jpg" alt="eingang" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 </div>
 </section>
 <section id="sprechzeiten">
@@ -417,8 +395,6 @@ Ve     Opérations au SZB et AOP</div>
 </div>
 
 
-
-
 <div class="image-container center"><img src="images/sono.jpg" alt="sono" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="en">
@@ -433,8 +409,6 @@ Fri    Operations at SZB and AOP</div>
 </div>
 
 
-
-
 <div class="image-container center"><img src="images/sono.jpg" alt="sono" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="es">
@@ -447,8 +421,6 @@ Mi 07:15 - 12:00  13:30 - 17:00
 Ju 07:15 - 12:00  13:30 - 17:00
 Vi     Operaciones en SZB y AOP</div>
 </div>
-
-
 
 
 <div class="image-container center"><img src="images/sono.jpg" alt="sono" loading="lazy" style="width: 80%; max-width: 100%;"></div>
@@ -466,54 +438,51 @@ Vi     Operaciones en SZB y AOP</div>
 <p>Nächste Ferien 3.10.2025 - 19.10.2025</p>
 <br>
 
-<h2>Im Notfall</h2>
-
-<p>032 324 17 20 Gynäkologie SZB</p>
-<p>032 324 20 11 Hebammen Gebärsaal SZB</p>
+<div class="image-container center"><img src="images/eingang.jpg" alt="eingang" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 
 
+<div class="clearfix"></div><h2>Im Notfall</h2>
 
-<div class="image-container center"><img src="images/frau.jpg" alt="frau" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+<strong>032 324 17 20 Gynäkologie Spital</strong>
+<strong>032 324 20 11 Hebammen Spital</strong>
 </div>
 <div class="lang-content " data-lang="fr">
 <h2>Informations actuelles</h2>
 
 
-<p>Nous acceptons de nouvelles patientes pour les contrôles réguliers, les grossesses, les urgences, les deuxièmes avis.</p>
+<p>Nous acceptons également de nouvelles patientes pour les contrôles réguliers, les grossesses, les urgences, les deuxièmes avis.</p>
 <br>
 <p>Veuillez apporter votre carte d'assurance maladie à chaque rendez-vous.</p>
 <br>
 <p>Prochaines vacances 3.10.2025 - 19.10.2025</p>
 <br>
 
-<h2>En cas d'urgence</h2>
-
-<p>032 324 17 20 Gynécologie SZB</p>
-<p>032 324 20 11 Sages-femmes SZB</p>
+<div class="image-container center"><img src="images/eingang.jpg" alt="eingang" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 
 
+<div class="clearfix"></div><h2>En cas d'urgence</h2>
 
-<div class="image-container center"><img src="images/frau.jpg" alt="frau" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+<strong>032 324 17 20 Gynécologie hôpital</strong>
+<strong>032 324 20 11 Sages-femmes hôpital</strong>
 </div>
 <div class="lang-content " data-lang="en">
 <h2>Current Information</h2>
 
 
-<p>We are still accepting new patients for regular check-ups, pregnancies, emergencies, second opinions.</p>
+<p>We are also accepting new patients for regular check-ups, pregnancies, emergencies, second opinions.</p>
 <br>
 <p>Please bring your insurance card to every appointment.</p>
 <br>
 <p>Next vacation 3.10.2025 - 19.10.2025</p>
 <br>
 
-<h2>In case of emergency</h2>
-
-<p>032 324 17 20 Gynecology SZB</p>
-<p>032 324 20 11 Obstetrics SZB</p>
+<div class="image-container center"><img src="images/eingang.jpg" alt="eingang" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 
 
+<div class="clearfix"></div><h2>In case of emergency</h2>
 
-<div class="image-container center"><img src="images/frau.jpg" alt="frau" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+<strong>032 324 17 20 Hospital Gynecology</strong>
+<strong>032 324 20 11 Hospital Midwives</strong>
 </div>
 <div class="lang-content " data-lang="es">
 <h2>Información actual</h2>
@@ -526,36 +495,31 @@ Vi     Operaciones en SZB y AOP</div>
 <p>Próximas vacaciones 3.10.2025 - 19.10.2025</p>
 <br>
 
-<h2>En caso de emergencia</h2>
-
-<p>032 324 17 20 Ginecología SZB</p>
-<p>032 324 20 11 Matronas Sala de partos SZB</p>
+<div class="image-container center"><img src="images/eingang.jpg" alt="eingang" loading="lazy" style="width: 80%; max-width: 100%;"></div>
 
 
+<div class="clearfix"></div><h2>En caso de emergencia</h2>
 
-<div class="image-container center"><img src="images/frau.jpg" alt="frau" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+<strong>032 324 17 20 Ginecología Hospital</strong>
+<strong>032 324 20 11 Matronas Hospital</strong>
 </div>
 </section>
-<section id="angebot">
+<section id="angebot_ob">
 <div class="lang-content active" data-lang="de">
-<h2>Unser Angebot</h2>
-
 <h3>Schwangerschaft</h3>
 <p>Wir begleiten Euch in der gesamten Schwangerschaft bis zum Geburtstermin.</p>
 
 <h3>Schwangerschaftskontrollen</h3>
-<p>Circa alle 4 Wochen ist eine Kontrolle empfohlen.</p>
-<p>Bei Risikoschwangerschaften oder in Notfällen gibt es flexible und häufige Kontrollen.</p>
-<p>Blutentnahmen, Urinanalyse, Blutdruckmessung, Gewichtsverlauf.</p>
-<p>Testen der Eisenreserven, Gabe von Eiseninfusionen.</p>
-<p>Koordination mit der betreuenden Hebamme.</p>
-
+<ul>
+<li>Circa alle 4 Wochen ist eine Kontrolle empfohlen.</li>
+<li>Bei Risikoschwangerschaften oder in Notfällen gibt es flexible und häufige Kontrollen.</li>
+<li>Blutentnahmen, Urinanalyse, Blutdruckmessung, Gewichtsverlauf.</li>
+<li>Testen der Eisenreserven, Gabe von Eiseninfusionen.</li>
+<li>Koordination mit der betreuenden Hebamme.</li>
+</ul>
 
 
 <div class="image-container center"><img src="images/3d.jpg" alt="3d" loading="lazy" style="width: 70%; max-width: 100%;"></div>
-
-
-
 
 <div class="clearfix"></div><h3>Ultraschalluntersuchungen</h3>
 <ul>
@@ -566,11 +530,8 @@ Vi     Operaciones en SZB y AOP</div>
 <li>3D/4D Ultraschall</li>
 </ul>
 
-
-
 <h3>Ernährungsberatung  </h3>
 <p>Individuelle Beratung für eine gesunde Ernährung während der Schwangerschaft.</p>
-
 
 <h3>Impfungen  </h3>
 <p>Beratung zu den empfohlenen Impfungen in der Schwangerschaft.</p>
@@ -586,6 +547,140 @@ Vi     Operaciones en SZB y AOP</div>
 </ul>
 
 
+<br>
+</div>
+<div class="lang-content " data-lang="fr">
+<h3>Grossesse</h3>
+<p>Nous vous accompagnons tout au long de votre grossesse jusqu'au terme.</p>
+
+<h3>Contrôles de grossesse</h3>
+<ul>
+<li>Un contrôle est recommandé environ toutes les 4 semaines.</li>
+<li>Pour les grossesses à risque ou en cas d'urgence, des contrôles flexibles et fréquents sont disponibles.</li>
+<li>Prises de sang, analyse d'urine, mesure de la tension artérielle, suivi du poids.</li>
+<li>Test des réserves en fer, administration de perfusions de fer.</li>
+<li>Coordination avec votre sage-femme qui vous suit.</li>
+</ul>
+
+
+<div class="image-container center"><img src="images/3d.jpg" alt="3d" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+
+<div class="clearfix"></div><h3>Examens échographiques</h3>
+<ul>
+<li>Échographie précoce (7-8 semaines)</li>
+<li>Dépistage du premier trimestre (12-14 semaines)</li>
+<li>Dépistage des organes, cœur (20-24 semaines)</li>
+<li>Contrôle de croissance (30-32 semaines)</li>
+<li>Échographie 3D/4D</li>
+</ul>
+
+<h3>Conseil nutritionnel  </h3>
+<p>Conseil individuel pour une alimentation saine pendant la grossesse.</p>
+
+<h3>Vaccinations  </h3>
+<p>Conseil sur les vaccinations recommandées pendant la grossesse.</p>
+<p>(Rappel coqueluche, grippe, ...)</p>
+
+<h3>Accompagnement de l'accouchement par les sages-femmes et l'hôpital</h3>
+<ul>
+<li>Sages-femmes Salle d'accouchement Spitalzentrum Biel</li>
+<li>Cabinet de sages-femmes Biel-Bienne (Elena Käser, Sabina Schöni, Karin Lüthi, Sara Stoll)</li>
+<li>Sage-femme Ursula Schüpbach, Biel</li>
+<li>Sage-femme Monika Gfeller, Biel</li>
+<li>Césariennes planifiées au Spitalzentrum Biel en tant que médecin agréé</li>
+</ul>
+
+<br>
+</div>
+<div class="lang-content " data-lang="en">
+<h3>Pregnancy</h3>
+<p>We accompany you throughout your entire pregnancy until the due date.</p>
+
+<h3>Pregnancy Check-ups</h3>
+<ul>
+<li>A check-up is recommended approximately every 4 weeks.</li>
+<li>For high-risk pregnancies or emergencies, flexible and frequent check-ups are available.</li>
+<li>Blood tests, urine analysis, blood pressure measurement, weight monitoring.</li>
+<li>Testing of iron reserves, administration of iron infusions.</li>
+<li>Coordination with your attending midwife.</li>
+</ul>
+
+
+<div class="image-container center"><img src="images/3d.jpg" alt="3d" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+
+<div class="clearfix"></div><h3>Ultrasound Examinations</h3>
+<ul>
+<li>Early ultrasound (7-8 weeks)</li>
+<li>First trimester screening (12-14 weeks)</li>
+<li>Organ screening, heart (20-24 weeks)</li>
+<li>Growth control (30-32 weeks)</li>
+<li>3D/4D Ultrasound</li>
+</ul>
+
+<h3>Nutritional Counseling  </h3>
+<p>Individual counseling for healthy nutrition during pregnancy.</p>
+
+<h3>Vaccinations  </h3>
+<p>Counseling on recommended vaccinations during pregnancy.</p>
+<p>(Whooping cough booster, flu, ...)</p>
+
+<h3>Birth support by midwives and hospital</h3>
+<ul>
+<li>Midwives Delivery Room Spitalzentrum Biel</li>
+<li>Midwife Practice Biel-Bienne (Elena Käser, Sabina Schöni, Karin Lüthi, Sara Stoll)</li>
+<li>Midwife Ursula Schüpbach, Biel</li>
+<li>Midwife Monika Gfeller, Biel</li>
+<li>Planned cesarean sections at Spitalzentrum Biel as attending physician</li>
+</ul>
+
+<br>
+</div>
+<div class="lang-content " data-lang="es">
+<h3>Embarazo</h3>
+<p>Le acompañamos durante todo el embarazo hasta la fecha del parto.</p>
+
+<h3>Controles del embarazo</h3>
+<ul>
+<li>Se recomienda un control aproximadamente cada 4 semanas.</li>
+<li>Para embarazos de alto riesgo o emergencias, hay controles flexibles y frecuentes disponibles.</li>
+<li>Análisis de sangre, análisis de orina, medición de presión arterial, seguimiento del peso.</li>
+<li>Prueba de reservas de hierro, administración de infusiones de hierro.</li>
+<li>Coordinación con su comadrona de atención.</li>
+</ul>
+
+
+<div class="image-container center"><img src="images/3d.jpg" alt="3d" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+
+<div class="clearfix"></div><h3>Exámenes ecográficos</h3>
+<ul>
+<li>Ecografía temprana (7-8 semanas)</li>
+<li>Cribado del primer trimestre (12-14 semanas)</li>
+<li>Cribado de órganos, corazón (20-24 semanas)</li>
+<li>Control de crecimiento (30-32 semanas)</li>
+<li>Ecografía 3D/4D</li>
+</ul>
+
+<h3>Asesoramiento nutricional  </h3>
+<p>Asesoramiento individual para una alimentación saludable durante el embarazo.</p>
+
+<h3>Vacunas  </h3>
+<p>Asesoramiento sobre las vacunas recomendadas durante el embarazo.</p>
+<p>(Refuerzo de tos ferina, gripe, ...)</p>
+
+<h3>Acompañamiento del parto por matronas y hospital</h3>
+<ul>
+<li>Matronas Sala de partos Spitalzentrum Biel</li>
+<li>Consulta de matronas Biel-Bienne (Elena Käser, Sabina Schöni, Karin Lüthi, Sara Stoll)</li>
+<li>Matrona Ursula Schüpbach, Biel</li>
+<li>Matrona Monika Gfeller, Biel</li>
+<li>Cesáreas planificadas en Spitalzentrum Biel como médico asociado</li>
+</ul>
+
+<br>
+</div>
+</section>
+<section id="angebot_gyn">
+<div class="lang-content active" data-lang="de">
 <div class="image-container center"><img src="images/anat.jpg" alt="anat" loading="lazy" style="width: 70%; max-width: 100%;"></div>
 
 <div class="clearfix"></div><h2>Gynäkologie</h2>
@@ -593,24 +688,121 @@ Vi     Operaciones en SZB y AOP</div>
 <p>Umfassende gynäkologische Betreuung für alle Lebensphasen.</p>
 
 <h3>Jahreskontrollen  </h3>
-<p>PAP-Abstriche alle 1-3 Jahre</p>
-<p>Brustkontrolle und Anleitung zur Selbstuntersuchung</p>
-<p>Vaginalflora und Intimhygiene</p>
-<p>Ultraschall (Kontrolle Myome, Zysten)</p>
+<ul>
+<li>PAP-Abstriche alle 1-3 Jahre</li>
+<li>Brustkontrolle und Anleitung zur Selbstuntersuchung</li>
+<li>Vaginalflora und Intimhygiene</li>
+<li>Ultraschall (Kontrolle Myome, Zysten)</li>
+<li>Peri- und Menopause: Beratung und Symptomlinderung mit naturidentischen Hormonen</li>
+</ul>
+
 
 <h3>Notfallsprechstunde  </h3>
 <p>Bei akuten Beschwerden sind wir für Euch da, telefonisch oder über kurzfristige Notfall-Termine.</p>
 
 
 <h3>Verhütungsberatung  </h3>
-<p>Beratung zu allen modernen Verhütungsmethoden.</p>
-<p>Von der Pille über die Kupfer-Spirale bis zur operativen Eileiterunterbindung.</p>
-<p>Erstverschreibung Verhütungspille nach Beratungsgespräch, gynäkologische Untersuchung nur wenn empfehlenswert.</p>
+<ul>
+<li>Beratung zu allen modernen Verhütungsmethoden.</li>
+<li>Von der Pille über die Kupfer-Spirale bis zur operativen Eileiterunterbindung.</li>
+<li>Erstverschreibung Verhütungspille nach Beratungsgespräch, gynäkologische Untersuchung nur wenn empfehlenswert.</li>
+</ul>
 
 <div class="image-container center"><img src="images/iud.jpg" alt="iud" loading="lazy" style="width: 40%; max-width: 100%;"></div>
+</div>
+<div class="lang-content " data-lang="fr">
+<div class="image-container center"><img src="images/anat.jpg" alt="anat" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+
+<div class="clearfix"></div><h2>Gynécologie</h2>
+
+<p>Prise en charge gynécologique complète pour toutes les phases de la vie.</p>
+
+<h3>Contrôles annuels  </h3>
+<ul>
+<li>Frottis PAP tous les 1-3 ans</li>
+<li>Examen des seins et instruction pour l'auto-palpation</li>
+<li>Flore vaginale et hygiène intime</li>
+<li>Échographie (contrôle des fibromes, kystes)</li>
+<li>Péri- et ménopause : conseil et soulagement des symptômes avec des hormones bio-identiques</li>
+</ul>
 
 
-<br>
+<h3>Consultation d'urgence  </h3>
+<p>Nous sommes là pour vous en cas de troubles aigus, par téléphone ou par des rendez-vous d'urgence à court terme.</p>
+
+
+<h3>Conseil en contraception  </h3>
+<ul>
+<li>Conseil sur toutes les méthodes contraceptives modernes.</li>
+<li>De la pilule au stérilet au cuivre jusqu'à la ligature des trompes chirurgicale.</li>
+<li>Première prescription de pilule contraceptive après entretien conseil, examen gynécologique seulement si recommandé.</li>
+</ul>
+
+<div class="image-container center"><img src="images/iud.jpg" alt="iud" loading="lazy" style="width: 40%; max-width: 100%;"></div>
+</div>
+<div class="lang-content " data-lang="en">
+<div class="image-container center"><img src="images/anat.jpg" alt="anat" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+
+<div class="clearfix"></div><h2>Gynecology</h2>
+
+<p>Comprehensive gynecological care for all life phases.</p>
+
+<h3>Annual Check-ups  </h3>
+<ul>
+<li>PAP smears every 1-3 years</li>
+<li>Breast examination and self-examination instruction</li>
+<li>Vaginal flora and intimate hygiene</li>
+<li>Ultrasound (monitoring fibroids, cysts)</li>
+<li>Peri- and menopause: counseling and symptom relief with bioidentical hormones</li>
+</ul>
+
+
+<h3>Emergency Consultation  </h3>
+<p>We are here for you with acute complaints, by phone or through short-notice emergency appointments.</p>
+
+
+<h3>Contraception Counseling  </h3>
+<ul>
+<li>Counseling on all modern contraceptive methods.</li>
+<li>From the pill to the copper IUD to surgical tubal ligation.</li>
+<li>First prescription of birth control pills after consultation, gynecological examination only if recommended.</li>
+</ul>
+
+<div class="image-container center"><img src="images/iud.jpg" alt="iud" loading="lazy" style="width: 40%; max-width: 100%;"></div>
+</div>
+<div class="lang-content " data-lang="es">
+<div class="image-container center"><img src="images/anat.jpg" alt="anat" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+
+<div class="clearfix"></div><h2>Ginecología</h2>
+
+<p>Atención ginecológica integral para todas las fases de la vida.</p>
+
+<h3>Controles anuales  </h3>
+<ul>
+<li>Citologías PAP cada 1-3 años</li>
+<li>Examen de mamas e instrucción para el autoexamen</li>
+<li>Flora vaginal e higiene íntima</li>
+<li>Ecografía (control de miomas, quistes)</li>
+<li>Peri- y menopausia: asesoramiento y alivio de síntomas con hormonas bioidenticas</li>
+</ul>
+
+
+<h3>Consulta de urgencia  </h3>
+<p>Estamos aquí para ti con molestias agudas, por teléfono o mediante citas de emergencia a corto plazo.</p>
+
+
+<h3>Asesoramiento anticonceptivo  </h3>
+<ul>
+<li>Asesoramiento sobre todos los métodos anticonceptivos modernos.</li>
+<li>Desde la píldora hasta el DIU de cobre hasta la ligadura de trompas quirúrgica.</li>
+<li>Primera prescripción de píldoras anticonceptivas después de consulta de asesoramiento, examen ginecológico solo si es recomendable.</li>
+</ul>
+
+<div class="image-container center"><img src="images/iud.jpg" alt="iud" loading="lazy" style="width: 40%; max-width: 100%;"></div>
+</div>
+</section>
+<section id="angebot_ops">
+<div class="lang-content active" data-lang="de">
 <h2>Operationen</h2>
 
 <p>Als Belegarzt im Spitalzentrum Biel (stationär, mit Übernachtung) und im Medin-Au-lac (ambulant, gleichentags wieder nach Hause).</p>
@@ -626,10 +818,62 @@ Vi     Operaciones en SZB y AOP</div>
 
 <h3>Endometrium-Resektion per Hysteroskopie (Gebärmutter-Schleimhaut entfernen mit Gebärmutterspiegelung) (ambulant) </h3>
 <p>Bei starken Mensblutungen kann dieser minimal-invasive Eingriff deutlich die Blutungen reduzieren.</p>
+</div>
+<div class="lang-content " data-lang="fr">
+<h2>Opérations</h2>
 
-<br>
+<p>En tant que médecin agréé au Spitalzentrum Biel (stationnaire, avec nuitée) et au Medin-Au-lac (ambulatoire, retour à domicile le jour même).</p>
 
-<h2>Zusammenarbeit </h2>
+<h3>Laparoscopie (Cœlioscopie) </h3>
+<p>Des opérations simples et complexes peuvent être effectuées avec seulement 3-4 petites incisions dans l'abdomen.</p>
+
+<h3>Hystérectomie par laparoscopie (Ablation de l'utérus) (stationnaire) </h3>
+<p>L'opération classique p. ex. pour les fibromes et les saignements importants, lorsque les autres méthodes échouent.</p>
+
+<h3>Hystéroscopie (Endoscopie utérine)</h3>
+<p>Une méthode moderne et minimalement invasive pour évaluer l'intérieur de l'utérus et également retirer des polypes ou de petits fibromes.</p>
+
+<h3>Résection de l'endomètre par hystéroscopie (Retrait de la muqueuse utérine par endoscopie utérine) (ambulatoire) </h3>
+<p>Pour les saignements menstruels abondants, cette intervention minimalement invasive peut réduire considérablement les saignements.</p>
+</div>
+<div class="lang-content " data-lang="en">
+<h2>Operations</h2>
+
+<p>As attending physician at Spitalzentrum Biel (inpatient, with overnight stay) and at Medin-Au-lac (outpatient, same day discharge).</p>
+
+<h3>Laparoscopy (Abdominal Endoscopy) </h3>
+<p>Simple and complex operations can be performed with only 3-4 small incisions in the abdomen.</p>
+
+<h3>Laparoscopic Hysterectomy (Uterus Removal) (inpatient) </h3>
+<p>The classic operation e.g. for fibroids and heavy bleeding when other methods fail.</p>
+
+<h3>Hysteroscopy (Uterine Endoscopy)</h3>
+<p>A modern, minimally invasive method to assess the inside of the uterus and also remove polyps or smaller fibroids.</p>
+
+<h3>Endometrial Resection by Hysteroscopy (Uterine Lining Removal by Uterine Endoscopy) (outpatient) </h3>
+<p>For heavy menstrual bleeding, this minimally invasive procedure can significantly reduce bleeding.</p>
+</div>
+<div class="lang-content " data-lang="es">
+<h2>Operaciones</h2>
+
+<p>Como médico asociado en Spitalzentrum Biel (hospitalario, con estancia nocturna) y en Medin-Au-lac (ambulatorio, alta el mismo día).</p>
+
+<h3>Laparoscopia (Endoscopia abdominal) </h3>
+<p>Se pueden realizar operaciones simples y complejas con solo 3-4 pequeñas incisiones en el abdomen.</p>
+
+<h3>Histerectomía por laparoscopia (Extirpación del útero) (hospitalario) </h3>
+<p>La operación clásica p. ej. para miomas y sangrados abundantes cuando otros métodos fallan.</p>
+
+<h3>Histeroscopia (Endoscopia uterina)</h3>
+<p>Un método moderno y mínimamente invasivo para evaluar el interior del útero y también eliminar pólipos o miomas pequeños.</p>
+
+<h3>Resección endometrial por histeroscopia (Eliminación del revestimiento uterino por endoscopia uterina) (ambulatorio) </h3>
+<p>Para sangrados menstruales abundantes, este procedimiento mínimamente invasivo puede reducir significativamente el sangrado.</p>
+</div>
+</section>
+<section id="cooperation">
+<div class="lang-content active" data-lang="de">
+<h2>Zusammenarbeiten</h2>
 
 <ul>
 <li>Spitalzentrum Biel: Gynäkologie, Brustzentrum, Beckenbodenzentrum</li>
@@ -644,113 +888,20 @@ Vi     Operaciones en SZB y AOP</div>
 <li>Kinderarzt-Praxis im MZB</li>
 </ul>
 
-
 <br>
 </div>
 <div class="lang-content " data-lang="fr">
-<h2>Nos services</h2>
-
-<h3>Grossesse</h3>
-<p>Nous vous accompagnons tout au long de votre grossesse jusqu'au terme.</p>
-
-<h3>Contrôles de grossesse</h3>
-<p>Un contrôle est recommandé environ toutes les 4 semaines.</p>
-<p>Pour les grossesses à risque ou en cas d'urgence, des contrôles flexibles et fréquents sont disponibles.</p>
-<p>Prises de sang, analyse d'urine, mesure de la tension artérielle, suivi du poids.</p>
-<p>Test des réserves en fer, administration de perfusions de fer.</p>
-<p>Coordination avec votre sage-femme.</p>
-
-
-
-<div class="image-container center"><img src="images/3d.jpg" alt="3d" loading="lazy" style="width: 70%; max-width: 100%;"></div>
-
-
-
-
-<div class="clearfix"></div><h3>Examens échographiques</h3>
-<ul>
-<li>Échographie précoce (7-8 semaines)</li>
-<li>Dépistage du premier trimestre (12-14 semaines)</li>
-<li>Dépistage des organes, cœur (20-24 semaines)</li>
-<li>Contrôle de croissance (30-32 semaines)</li>
-<li>Échographie 3D/4D</li>
-</ul>
-
-
-
-<h3>Conseil nutritionnel  </h3>
-<p>Conseil individuel pour une alimentation saine pendant la grossesse.</p>
-
-
-<h3>Vaccinations  </h3>
-<p>Conseil sur les vaccinations recommandées pendant la grossesse.</p>
-<p>(Rappel coqueluche, grippe, ...)</p>
-
-<h3>Accompagnement de l'accouchement par les sages-femmes et l'hôpital</h3>
-<ul>
-<li>Sages-femmes Salle d'accouchement Spitalzentrum Biel</li>
-<li>Cabinet de sages-femmes Biel-Bienne (Elena Käser, Sabina Schöni, Karin Lüthi, Sara Stoll)</li>
-<li>Sage-femme Ursula Schüpbach, Biel</li>
-<li>Sage-femme Monika Gfeller, Biel</li>
-<li>Césariennes planifiées au Spitalzentrum Biel en tant que médecin agréé</li>
-</ul>
-
-
-<div class="image-container center"><img src="images/anat.jpg" alt="anat" loading="lazy" style="width: 70%; max-width: 100%;"></div>
-
-<div class="clearfix"></div><h2>Gynécologie</h2>
-
-<p>Prise en charge gynécologique complète pour toutes les phases de la vie.</p>
-
-<h3>Contrôles annuels  </h3>
-<p>Frottis PAP tous les 1-3 ans</p>
-<p>Examen des seins et instruction pour l'auto-palpation</p>
-<p>Flore vaginale et hygiène intime</p>
-<p>Échographie (contrôle des fibromes, kystes)</p>
-
-<h3>Consultation d'urgence  </h3>
-<p>Nous sommes là pour vous en cas de troubles aigus, par téléphone ou par des rendez-vous d'urgence à court terme.</p>
-
-
-<h3>Conseil en contraception  </h3>
-<p>Conseil sur toutes les méthodes contraceptives modernes.</p>
-<p>De la pilule au stérilet au cuivre jusqu'à la ligature des trompes chirurgicale.</p>
-<p>Première prescription de pilule contraceptive après entretien conseil, examen gynécologique seulement si recommandé.</p>
-
-<div class="image-container center"><img src="images/iud.jpg" alt="iud" loading="lazy" style="width: 40%; max-width: 100%;"></div>
-
-
-<br>
-<h2>Opérations</h2>
-
-<p>En tant que médecin agréé au Spitalzentrum Biel (stationnaire, avec nuitée) et au Medin-Au-lac (ambulatoire, retour à domicile le jour même).</p>
-
-<h3>Laparoscopie (Cœlioscopie) </h3>
-<p>Des opérations simples et complexes peuvent être effectuées avec seulement 3-4 petites incisions dans l'abdomen.</p>
-
-<h3>Hystérectomie par laparoscopie (Ablation de l'utérus) (stationnaire) </h3>
-<p>L'opération classique par exemple pour les fibromes et les saignements importants, lorsque les autres méthodes échouent.</p>
-
-<h3>Hystéroscopie (Endoscopie utérine)</h3>
-<p>Une méthode moderne et minimalement invasive pour évaluer l'intérieur de l'utérus et également retirer des polypes ou de petits fibromes.</p>
-
-<h3>Résection de l'endomètre par hystéroscopie (Ablation de l'endomètre par endoscopie utérine) (ambulatoire) </h3>
-<p>Pour les saignements menstruels abondants, cette intervention minimalement invasive peut réduire considérablement les saignements.</p>
-
-<br>
-
-<h2>Collaboration</h2>
-
+<h2>Coopération</h2>
 
 <ul>
-<li>Spitalzentrum Biel: Gynécologie, Centre du sein, Centre du plancher pelvien</li>
-<li>Spitalzentrum Biel: Radiologie, Chirurgie, Physiothérapie</li>
-<li>EndoDia Gare de Bienne: Endocrinologie, Diabète</li>
+<li>Spitalzentrum Biel : Gynécologie, Centre du sein, Centre du plancher pelvien</li>
+<li>Spitalzentrum Biel : Radiologie, Chirurgie, Physiothérapie</li>
+<li>EndoDia à la gare : Endocrinologie, Diabète</li>
 <li>Centre de santé sexuelle</li>
 <li>Centre de fertilité Biel</li>
 <li>ESPACE Chirurgie</li>
-<li>Gynécologie Burgernziel Bern</li>
-<li>Inselspital Bern</li>
+<li>Santé des femmes Burgernziel Bern</li>
+<li>Clinique des femmes Inselspital</li>
 <li>Laboratoire Viollier Biel / Allschwil</li>
 <li>Cabinet de pédiatrie au MZB</li>
 </ul>
@@ -758,109 +909,17 @@ Vi     Operaciones en SZB y AOP</div>
 <br>
 </div>
 <div class="lang-content " data-lang="en">
-<h2>Our Services</h2>
-
-<h3>Pregnancy</h3>
-<p>We accompany you throughout your entire pregnancy until the due date.</p>
-
-<h3>Pregnancy Check-ups</h3>
-<p>A check-up is recommended approximately every 4 weeks.</p>
-<p>For high-risk pregnancies or emergencies, flexible and frequent check-ups are available.</p>
-<p>Blood tests, urine analysis, blood pressure measurement, weight monitoring.</p>
-<p>Testing of iron reserves, administration of iron infusions.</p>
-<p>Coordination with your midwife.</p>
-
-
-
-<div class="image-container center"><img src="images/3d.jpg" alt="3d" loading="lazy" style="width: 70%; max-width: 100%;"></div>
-
-
-
-
-<div class="clearfix"></div><h3>Ultrasound Examinations</h3>
-<ul>
-<li>Early ultrasound (7-8 weeks)</li>
-<li>First trimester screening (12-14 weeks)</li>
-<li>Organ screening, heart (20-24 weeks)</li>
-<li>Growth control (30-32 weeks)</li>
-<li>3D/4D Ultrasound</li>
-</ul>
-
-
-
-<h3>Nutritional Counseling  </h3>
-<p>Individual counseling for healthy nutrition during pregnancy.</p>
-
-
-<h3>Vaccinations  </h3>
-<p>Counseling on recommended vaccinations during pregnancy.</p>
-<p>(Whooping cough booster, flu, ...)</p>
-
-<h3>Birth support by midwives and hospital</h3>
-<ul>
-<li>Midwives Delivery Room Spitalzentrum Biel</li>
-<li>Midwife Practice Biel-Bienne (Elena Käser, Sabina Schöni, Karin Lüthi, Sara Stoll)</li>
-<li>Midwife Ursula Schüpbach, Biel</li>
-<li>Midwife Monika Gfeller, Biel</li>
-<li>Planned cesarean sections at Spitalzentrum Biel as attending physician</li>
-</ul>
-
-
-<div class="image-container center"><img src="images/anat.jpg" alt="anat" loading="lazy" style="width: 70%; max-width: 100%;"></div>
-
-<div class="clearfix"></div><h2>Gynecology</h2>
-
-<p>Comprehensive gynecological care for all life phases.</p>
-
-<h3>Annual Check-ups  </h3>
-<p>PAP smears every 1-3 years</p>
-<p>Breast examination and self-examination instruction</p>
-<p>Vaginal flora and intimate hygiene</p>
-<p>Ultrasound (monitoring fibroids, cysts)</p>
-
-<h3>Emergency Consultation  </h3>
-<p>We are here for you with acute complaints, by phone or through short-notice emergency appointments.</p>
-
-
-<h3>Contraception Counseling  </h3>
-<p>Counseling on all modern contraceptive methods.</p>
-<p>From the pill to the copper IUD to surgical tubal ligation.</p>
-<p>First prescription of birth control pills after consultation, gynecological examination only if recommended.</p>
-
-<div class="image-container center"><img src="images/iud.jpg" alt="iud" loading="lazy" style="width: 40%; max-width: 100%;"></div>
-
-
-<br>
-<h2>Operations</h2>
-
-<p>As attending physician at Spitalzentrum Biel (inpatient, with overnight stay) and at Medin-Au-lac (outpatient, same day discharge).</p>
-
-<h3>Laparoscopy (Abdominal Endoscopy) </h3>
-<p>Simple and complex operations can be performed with only 3-4 small incisions in the abdomen.</p>
-
-<h3>Laparoscopic Hysterectomy (Uterus Removal) (inpatient) </h3>
-<p>The classic operation for fibroids and heavy bleeding when other methods fail.</p>
-
-<h3>Hysteroscopy (Uterine Endoscopy)</h3>
-<p>A modern, minimally invasive method to assess the inside of the uterus and also remove polyps or smaller fibroids.</p>
-
-<h3>Endometrial Resection by Hysteroscopy (Endometrial Ablation by Uterine Endoscopy) (outpatient) </h3>
-<p>For heavy menstrual bleeding, this minimally invasive procedure can significantly reduce bleeding.</p>
-
-<br>
-
-<h2>Collaboration</h2>
-
+<h2>Cooperation</h2>
 
 <ul>
 <li>Spitalzentrum Biel: Gynecology, Breast Center, Pelvic Floor Center</li>
 <li>Spitalzentrum Biel: Radiology, Surgery, Physiotherapy</li>
-<li>EndoDia near train station: Endocrinology, Diabetes )</li>
-<li>Centre for Sexual Health</li>
+<li>EndoDia at train station: Endocrinology, Diabetes</li>
+<li>Center for Sexual Health</li>
 <li>Fertility Center Biel</li>
 <li>ESPACE Surgery</li>
-<li>Gynecology Burgernziel Bern</li>
-<li>OB/GYN Inselspital Bern</li>
+<li>Women's Health Burgernziel Bern</li>
+<li>Women's Clinic Inselspital</li>
 <li>Viollier Laboratory Biel / Allschwil</li>
 <li>Pediatric Practice at MZB</li>
 </ul>
@@ -868,113 +927,20 @@ Vi     Operaciones en SZB y AOP</div>
 <br>
 </div>
 <div class="lang-content " data-lang="es">
-<h2>Nuestros servicios</h2>
-
-<h3>Embarazo</h3>
-<p>Le acompañamos durante todo el embarazo hasta la fecha del parto.</p>
-
-<h3>Controles del embarazo</h3>
-<p>Se recomienda un control aproximadamente cada 4 semanas.</p>
-<p>Para embarazos de alto riesgo o emergencias, hay controles flexibles y frecuentes disponibles.</p>
-<p>Análisis de sangre, análisis de orina, medición de presión arterial, seguimiento del peso.</p>
-<p>Prueba de reservas de hierro, administración de infusiones de hierro.</p>
-<p>Coordinación con su comadrona.</p>
-
-
-
-<div class="image-container center"><img src="images/3d.jpg" alt="3d" loading="lazy" style="width: 70%; max-width: 100%;"></div>
-
-
-
-
-<div class="clearfix"></div><h3>Exámenes ecográficos</h3>
-<ul>
-<li>Ecografía temprana (7-8 semanas)</li>
-<li>Cribado del primer trimestre (12-14 semanas)</li>
-<li>Cribado de órganos, corazón (20-24 semanas)</li>
-<li>Control de crecimiento (30-32 semanas)</li>
-<li>Ecografía 3D/4D</li>
-</ul>
-
-
-
-<h3>Asesoramiento nutricional  </h3>
-<p>Asesoramiento individual para una alimentación saludable durante el embarazo.</p>
-
-
-<h3>Vacunas  </h3>
-<p>Asesoramiento sobre las vacunas recomendadas durante el embarazo.</p>
-<p>(Refuerzo de tos ferina, gripe, ...)</p>
-
-<h3>Acompañamiento del parto por matronas y hospital </h3>
-<ul>
-<li>Matronas Sala de partos Spitalzentrum Biel</li>
-<li>Consulta de matronas Biel-Bienne (Elena Käser, Sabina Schöni, Karin Lüthi, Sara Stoll)</li>
-<li>Matrona Ursula Schüpbach, Biel</li>
-<li>Matrona Monika Gfeller, Biel</li>
-<li>Cesáreas planificadas en Spitalzentrum Biel como médico asociado</li>
-</ul>
-
-
-<div class="image-container center"><img src="images/anat.jpg" alt="anat" loading="lazy" style="width: 70%; max-width: 100%;"></div>
-
-<div class="clearfix"></div><h2>Ginecología</h2>
-
-<p>Atención ginecológica integral para todas las fases de la vida.</p>
-
-<h3>Controles anuales  </h3>
-<p>Citologías PAP cada 1-3 años</p>
-<p>Examen de mamas e instrucción para el autoexamen</p>
-<p>Flora vaginal e higiene íntima</p>
-<p>Ecografía (control de miomas, quistes)</p>
-
-<h3>Consulta de urgencia  </h3>
-<p>Estamos aquí para ti con molestias agudas, por teléfono o mediante citas de emergencia a corto plazo.</p>
-
-
-<h3>Asesoramiento anticonceptivo  </h3>
-<p>Asesoramiento sobre todos los métodos anticonceptivos modernos.</p>
-<p>Desde la píldora hasta el DIU de cobre hasta la ligadura de trompas quirúrgica.</p>
-<p>Primera prescripción de píldoras anticonceptivas después de consulta de asesoramiento, examen ginecológico solo si es recomendable.</p>
-
-<div class="image-container center"><img src="images/iud.jpg" alt="iud" loading="lazy" style="width: 40%; max-width: 100%;"></div>
-
-
-<br>
-<h2>Operaciones</h2>
-
-<p>Como médico asociado en Spitalzentrum Biel (hospitalario, con estancia nocturna) y en Medin-Au-lac (ambulatorio, alta el mismo día).</p>
-
-<h3>Laparoscopia (Endoscopia abdominal) </h3>
-<p>Se pueden realizar operaciones simples y complejas con solo 3-4 pequeñas incisiones en el abdomen.</p>
-
-<h3>Histerectomía por laparoscopia (Extirpación del útero) (hospitalario) </h3>
-<p>La operación clásica por ejemplo para miomas y sangrados abundantes cuando otros métodos fallan.</p>
-
-<h3>Histeroscopia (Endoscopia uterina)</h3>
-<p>Un método moderno y mínimamente invasivo para evaluar el interior del útero y también eliminar pólipos o miomas pequeños.</p>
-
-<h3>Resección endometrial por histeroscopia (Ablación endometrial por endoscopia uterina) (ambulatorio) </h3>
-<p>Para sangrados menstruales abundantes, este procedimiento mínimamente invasivo puede reducir significativamente el sangrado.</p>
-
-<br>
-
-<h2>Colaboración</h2>
-
+<h2>Cooperación</h2>
 
 <ul>
 <li>Spitalzentrum Biel: Ginecología, Centro de mama, Centro de suelo pélvico</li>
 <li>Spitalzentrum Biel: Radiología, Cirugía, Fisioterapia</li>
-<li>EndoDia am Bahnhof: Endocrinología, Diabetes</li>
+<li>EndoDia en la estación: Endocrinología, Diabetes</li>
 <li>Centro de salud sexual</li>
 <li>Centro de fertilidad Biel</li>
 <li>ESPACE Cirugía</li>
-<li>Ginecología Burgernziel Bern</li>
-<li>Inselspital Bern</li>
+<li>Salud de la mujer Burgernziel Bern</li>
+<li>Clínica de la mujer Inselspital</li>
 <li>Laboratorio Viollier Biel / Allschwil</li>
 <li>Consulta pediátrica en MZB</li>
 </ul>
-
 
 <br>
 </div>
@@ -1037,30 +1003,84 @@ Vi     Operaciones en SZB y AOP</div>
 <p>Asistente médica</p>
 </div>
 </section>
+<section id="cv">
+<div class="lang-content active" data-lang="de">
+<h2>Ausbildung Dr. Oehler</h2>
+<ul>
+<li>1997-2004 Studium in Göttingen, DE</li>
+<li>2005-2013 Assistenzarzt in Frauenfeld, Münsterlingen, Solothurn, Bern, Biel</li>
+<li>Dissertation: Lernfilme Chirurgische Instrumente, Naht, Knoten. Uni Bern.</li>
+<li>2014-2019 Oberarzt in Solothurn und Biel</li>
+<li>seit 2019 Praxis in Biel</li>
+<li>seit 2019 Belegarzt und Oberarzt im Spitalzentrum Biel</li>
+<li>seit 2019 Fähigkeitsausweis Schwangerschafts-Ultraschall SGUM</li>
+<li>seit 2019 Fähigkeitsausweis Praxislabor</li>
+</ul>
+</div>
+<div class="lang-content " data-lang="fr">
+<h2>Formation Dr. Oehler</h2>
+<ul>
+<li>1997-2004 Études à Göttingen, DE</li>
+<li>2005-2013 Médecin assistant à Frauenfeld, Münsterlingen, Solothurn, Bern, Biel</li>
+<li>Thèse : Films éducatifs Instruments chirurgicaux, Sutures, Nœuds. Uni Bern.</li>
+<li>2014-2019 Chef de clinique à Solothurn et Biel</li>
+<li>depuis 2019 Cabinet à Biel</li>
+<li>depuis 2019 Médecin agréé et chef de clinique au Spitalzentrum Biel</li>
+<li>depuis 2019 Certificat de compétence Échographie de grossesse SGUM</li>
+<li>depuis 2019 Certificat de compétence Laboratoire de cabinet</li>
+</ul>
+</div>
+<div class="lang-content " data-lang="en">
+<h2>Dr. Oehler's Education</h2>
+<ul>
+<li>1997-2004 Studies in Göttingen, DE</li>
+<li>2005-2013 Resident physician in Frauenfeld, Münsterlingen, Solothurn, Bern, Biel</li>
+<li>Dissertation: Educational films Surgical Instruments, Sutures, Knots. University of Bern.</li>
+<li>2014-2019 Senior physician in Solothurn and Biel</li>
+<li>since 2019 Practice in Biel</li>
+<li>since 2019 Attending physician and senior physician at Spitalzentrum Biel</li>
+<li>since 2019 Certificate of competence Pregnancy Ultrasound SGUM</li>
+<li>since 2019 Certificate of competence Practice Laboratory</li>
+</ul>
+</div>
+<div class="lang-content " data-lang="es">
+<h2>Formación Dr. Oehler</h2>
+<ul>
+<li>1997-2004 Estudios en Göttingen, DE</li>
+<li>2005-2013 Médico asistente en Frauenfeld, Münsterlingen, Solothurn, Bern, Biel</li>
+<li>Tesis: Películas educativas Instrumentos quirúrgicos, Suturas, Nudos. Uni Bern.</li>
+<li>2014-2019 Médico adjunto en Solothurn y Biel</li>
+<li>desde 2019 Consulta en Biel</li>
+<li>desde 2019 Médico asociado y médico adjunto en Spitalzentrum Biel</li>
+<li>desde 2019 Certificado de competencia Ecografía del embarazo SGUM</li>
+<li>desde 2019 Certificado de competencia Laboratorio de consulta</li>
+</ul>
+</div>
+</section>
 <section id="links">
 <div class="lang-content active" data-lang="de">
-<h1>Externe Links</h1>
+<h2>Externe Links</h2>
 
 <ul>
 <li><a href="https://youtube.com/laparoedu">YOUTUBE - LaparoEdu</a></li>
 </ul>
 </div>
 <div class="lang-content " data-lang="fr">
-<h1>Liens externes</h1>
+<h2>Liens externes</h2>
 
 <ul>
 <li><a href="https://youtube.com/laparoedu">YOUTUBE - LaparoEdu</a></li>
 </ul>
 </div>
 <div class="lang-content " data-lang="en">
-<h1>External Links</h1>
+<h2>External Links</h2>
 
 <ul>
 <li><a href="https://youtube.com/laparoedu">YOUTUBE - LaparoEdu</a></li>
 </ul>
 </div>
 <div class="lang-content " data-lang="es">
-<h1>Enlaces externos</h1>
+<h2>Enlaces externos</h2>
 
 <ul>
 <li><a href="https://youtube.com/laparoedu">YOUTUBE - LaparoEdu</a></li>
@@ -1069,52 +1089,56 @@ Vi     Operaciones en SZB y AOP</div>
 </section>
 <section id="gallery">
 <div class="lang-content active" data-lang="de">
-<h1>Galerie</h1>
+<h2>Galerie</h2>
 
+<div class="image-container center"><img src="images/embryo.jpg" alt="embryo" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 
-<div class="image-container center"><img src="images/ecke.jpg" alt="ecke" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+<div class="image-container center"><img src="images/ecke.jpg" alt="ecke" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 
 <div class="image-container center"><img src="images/bhf.jpg" alt="bhf" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 
-<div class="image-container center"><img src="images/embryo.jpg" alt="embryo" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+<div class="image-container center"><img src="images/frau.jpg" alt="frau" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="fr">
-<h1>Galerie</h1>
+<h2>Galerie</h2>
 
+<div class="image-container center"><img src="images/embryo.jpg" alt="embryo" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 
-<div class="image-container center"><img src="images/ecke.jpg" alt="ecke" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+<div class="image-container center"><img src="images/ecke.jpg" alt="ecke" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 
 <div class="image-container center"><img src="images/bhf.jpg" alt="bhf" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 
-<div class="image-container center"><img src="images/embryo.jpg" alt="embryo" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+<div class="image-container center"><img src="images/frau.jpg" alt="frau" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="en">
-<h1>Gallery</h1>
+<h2>Gallery</h2>
 
+<div class="image-container center"><img src="images/embryo.jpg" alt="embryo" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 
-<div class="image-container center"><img src="images/ecke.jpg" alt="ecke" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+<div class="image-container center"><img src="images/ecke.jpg" alt="ecke" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 
 <div class="image-container center"><img src="images/bhf.jpg" alt="bhf" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 
-<div class="image-container center"><img src="images/embryo.jpg" alt="embryo" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+<div class="image-container center"><img src="images/frau.jpg" alt="frau" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 </div>
 <div class="lang-content " data-lang="es">
-<h1>Galería</h1>
+<h2>Galería</h2>
 
+<div class="image-container center"><img src="images/embryo.jpg" alt="embryo" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 
-<div class="image-container center"><img src="images/ecke.jpg" alt="ecke" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+<div class="image-container center"><img src="images/ecke.jpg" alt="ecke" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 
 <div class="image-container center"><img src="images/bhf.jpg" alt="bhf" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 
-<div class="image-container center"><img src="images/embryo.jpg" alt="embryo" loading="lazy" style="width: 70%; max-width: 100%;"></div>
+<div class="image-container center"><img src="images/frau.jpg" alt="frau" loading="lazy" style="width: 90%; max-width: 100%;"></div>
 </div>
 </section></main>
     <script>
         let isDark = true;
         
         const themes = {
-            light: {"bg_main": "#ffffff", "bg_alt": "#f5f5f5", "bg_nav": "#f0f0f0", "text_primary": "#333333", "text_secondary": "#666666", "accent": "#5dade2", "accent_hover": "#4a90e2", "border": "#ddd", "menu_hover": "#f5f5f5"},
-            dark: {"bg_main": "#1a1a1a", "bg_alt": "#2d2d2d", "bg_nav": "#222222", "text_primary": "#f0f0f0", "text_secondary": "#b0b0b0", "accent": "#5dade2", "accent_hover": "#74b9ff", "border": "#444", "menu_hover": "#2d2d2d"}
+            light: {"bg_main": "#ffffff", "bg_alt": "#f0f0f0", "bg_nav": "#f0f0f0", "bg_section": "#f0f0f0", "text_primary": "#333333", "text_secondary": "#666666", "accent": "#5dade2", "accent_hover": "#4a90e2", "border": "#ddd", "menu_hover": "#f5f5f5"},
+            dark: {"bg_main": "#101010", "bg_alt": "#2d2d2d", "bg_nav": "#222222", "bg_section": "#303030", "text_primary": "#f3f3f3", "text_secondary": "#b0b0b0", "accent": "#5dade2", "accent_hover": "#74b9ff", "border": "#444", "menu_hover": "#2d2d2d"}
         };
         
         function applyTheme(themeName) {
