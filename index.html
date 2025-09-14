@@ -1172,6 +1172,9 @@ Vi     Operaciones en SZB y AOP</div>
             
             // Update document language
             document.documentElement.lang = lang;
+            
+            // Scroll to top to prevent jumpy behavior
+            window.scrollTo(0, 0);
         }
         
         function toggleMenu() {
